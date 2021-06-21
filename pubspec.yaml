@@ -30,6 +30,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   splashscreen: ^1.2.0
   hexcolor: ^2.0.3
+  flutter_analog_clock: ^0.1.1
+  intl: ^0.17.0
+  http: 0.13.3
+
 
 dev_dependencies:
   flutter_test:
@@ -62,7 +66,7 @@ flutter:
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
-  # example:
+  # example
   # fonts:
   #   - family: Schyler
   #     fonts:

@@ -1,10 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:splashscreen/splashscreen.dart';
 import 'homePage.dart';
 
 void main() {
+
   runApp(MyApp());
+
+
 }
 
 class MyApp extends StatelessWidget {
@@ -37,7 +43,10 @@ class MyHomePage extends StatefulWidget {
 
 
 class _MyHomePageState extends State<MyHomePage> {
+  TextEditingController myController = TextEditingController();
 
+  TextEditingController usenameE = TextEditingController();
+  TextEditingController passwordE = TextEditingController();
 
 
   @override
@@ -62,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
        margin: const EdgeInsets.only(left: 0.0,right: 0.0,top: 0.0,bottom: 15.0),
        width: MediaQuery.of(context).size.height,
       // height: MediaQuery.of(context).size.height,
-           child: Image.asset('asset/staticimages/galaxylogo.jpg'),// Image.network('http://www.gi-group.com/images/img/logo.png'),
+           child:  Image.network('http://www.gi-group.com/images/img/logo.png'),
     ),
 
 
@@ -96,6 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         // height: MediaQuery.of(context).size.height,
 
                         child: TextFormField(
+                            controller:usenameE,
                           decoration: InputDecoration(
                               border: UnderlineInputBorder(),
                               labelText: 'أدخل اسم المستخدم'
@@ -113,6 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: MediaQuery.of(context).size.height,
                // height: MediaQuery.of(context).size.height,
                   child: TextFormField(
+                    controller:passwordE,
+
                     decoration: InputDecoration(
                         border: UnderlineInputBorder(),
                         labelText: 'أدخل كلمة المرور'
@@ -129,10 +141,17 @@ class _MyHomePageState extends State<MyHomePage> {
                // height: MediaQuery.of(context).size.height,
                   child: ElevatedButton(
   onPressed: () {
-    Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => homePage()),
-  ); },
+
+    Login(usenameE.text,passwordE.text);
+
+
+/*    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => homePage()),
+    );*/
+
+
+},
   child: Text('تسجيل الدخول'),
 )
               ),
@@ -145,6 +164,40 @@ class _MyHomePageState extends State<MyHomePage> {
      // This trailing comma makes auto-formatting nicer for build methods.
         ), );
   }
+
+  Login(String usernamen,String password) async {
+
+    final uri = Uri.parse('http://10.0.1.63:8017/api/User/CheckUser');
+    final headers = {'Content-Type': 'application/json'};
+    Map<String, dynamic> body = {'User_ID': usernamen, 'User_Password': password};
+    String jsonBody = json.encode(body);
+    final encoding = Encoding.getByName('utf-8');
+
+    Response response = await post(
+      uri,
+      headers: headers,
+      body: jsonBody,
+      encoding: encoding,
+    );
+
+    int statusCode = response.statusCode;
+    String responseBody = response.body;
+    if(responseBody[1] == "1") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => homePage()),
+      );
+    }
+    else
+      {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("كلمة المرور خاطئة"),
+      ),);
+
+      }
+  }
+
+
 }
 
 class SplashScreenPage extends StatelessWidget {
