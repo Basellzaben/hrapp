@@ -74,11 +74,11 @@ String logo="";
           height: MediaQuery.of(context).size.height,
             child: Column(children: [
      Container(
-       margin: const EdgeInsets.only(left: 0.0,right: 0.0,top: 0.0,bottom: 15.0),
+      // margin: const EdgeInsets.only(left: 0.0,right: 0.0,top: 0.0,bottom: 15.0),
        width: MediaQuery.of(context).size.height,
       // height: MediaQuery.of(context).size.height,
-       //    child:  Image.network('http://www.gi-group.com/images/img/logo.png'),
-       //  child: Image.file(File(Globalvireable.logo), width: 400.0, height: 300.0)
+    //   child:  Image.network('http://www.gi-group.com/images/img/logo.png'),
+         child: Image.file(File(Globalvireable.logo), width: 400.0, height: 100.0)
     ),
 
 
@@ -131,6 +131,7 @@ String logo="";
                // height: MediaQuery.of(context).size.height,
                   child: TextFormField(
                     controller:passwordE,
+                      obscureText:true,
 
                     decoration: InputDecoration(
                         border: UnderlineInputBorder(),
@@ -211,7 +212,7 @@ class SplashScreenPage extends StatelessWidget {
   @override
   //_query();
   Widget build(BuildContext context) {
-    _asyncMethod("https://www.aeromobil.com/images/home_big.png","loginTop");
+    _asyncMethod("https://www.yello.ae/img/ae/r/1418637587-galaxy-international-group-emirates-llc.jpg","loginTop");
     return SplashScreen(
 
       seconds: 6,
@@ -246,7 +247,7 @@ class SplashScreenPage extends StatelessWidget {
     var response = await get(url); // <--2
     var documentDirectory = await getApplicationDocumentsDirectory();
     var firstPath = documentDirectory.path + "/images";
-    var filePathAndName = documentDirectory.path + '/images/'+name+'.png';
+    var filePathAndName = documentDirectory.path + '/images/'+name+'.jpg';
 
     // var filePathAndName ='/mnt/sdcard/Android/data/'+name+'.png';
     //comment out the next three lines to prevent the image from being saved
