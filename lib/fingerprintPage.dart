@@ -14,6 +14,7 @@ class fingerprintPage extends StatelessWidget {
     Navigator.pop(context);
 
   }
+
   @override
   Widget build(BuildContext context) {
     mcontext=context;
@@ -21,12 +22,8 @@ class fingerprintPage extends StatelessWidget {
         resizeToAvoidBottomInset : false,
         appBar: AppBar(title: Text("بصمة الدوام الالكترونية")),
     body: Center(
-
       child: Container(
-
         child: Column(children: [
-
-
     /*      Container(
             child: DigitalClock(
               digitAnimationStyle: Curves.elasticOut,
@@ -39,25 +36,20 @@ class fingerprintPage extends StatelessWidget {
                 fontSize: 50,
               ),
               amPmDigitTextStyle: TextStyle(
-                  color: Colors.blueGrey,
-                  fontWeight: FontWeight.bold),
+              color: Colors.blueGrey,
+              fontWeight: FontWeight.bold),
             ),
           ),*/
 
-
-
     Container(
             margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 40.0,bottom: 0.0),
-
             child: Text(getSystemTime(),style: TextStyle(fontSize: 50.0,fontWeight: FontWeight.bold),),
-
           ),
-
 /*
         Container(
         margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 40.0),
-          child: FlutterAnalogClock(
-            dateTime: DateTime.now(),
+        child: FlutterAnalogClock(
+        dateTime: DateTime.now(),
         dialPlateColor: Colors.white,
         hourHandColor: Colors.black,
         minuteHandColor: Colors.black,
@@ -78,8 +70,7 @@ class fingerprintPage extends StatelessWidget {
         width: 150.0,
         height: 150.0,
         decoration: const BoxDecoration(),
-            child:Text("")
-
+        child:Text("")
         )),*/
 
           Container( child: Container(

@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hrmsapp/sqlite/DatabaseHelper.dart';
 import 'fingerprintPage.dart';
 
 
 class homePage extends StatelessWidget {
+  final dbHelper = DatabaseHelper.instance;
 
   goBackToPreviousScreen(BuildContext context){
 
@@ -13,11 +15,11 @@ class homePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dbHelper = DatabaseHelper.instance;
+
     return Scaffold(
       appBar: AppBar(title: Text("")),
       body: Center(
-
-
 
       ),
       drawer: Drawer(
@@ -27,7 +29,7 @@ class homePage extends StatelessWidget {
           children: <Widget>[
 
             UserAccountsDrawerHeader(
-              accountName: Text("Galaxy Hrms System"),
+              accountName: Text("Galaxy Hr System"),
               accountEmail: Text("http://www.gi-group.com"),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.black12,
