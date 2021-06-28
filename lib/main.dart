@@ -395,7 +395,6 @@ class SplashScreenPage extends StatelessWidget {
     if(filePathAndName.isNotEmpty) {
      // _insert(filePathAndName, name); // <-- 3
 
-
       Globalvireable.logo=filePathAndName;
     //  _query();
     } else{
