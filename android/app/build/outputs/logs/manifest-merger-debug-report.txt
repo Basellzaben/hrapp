@@ -5,6 +5,7 @@ INJECTED from C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\android\
 INJECTED from C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\android\app\src\main\AndroidManifest.xml:1:1-41:12
 INJECTED from C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\android\app\src\main\AndroidManifest.xml:1:1-41:12
 MERGED from C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\android\app\src\main\AndroidManifest.xml:1:1-41:12
+MERGED from [:shared_preferences] C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:sqflite] C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:analog_clock] C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\build\analog_clock\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider] C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\build\path_provider\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
@@ -97,6 +98,8 @@ uses-sdk
 INJECTED from C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\android\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\android\app\src\main\AndroidManifest.xml
+MERGED from [:shared_preferences] C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences] C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:sqflite] C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\build\sqflite\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:analog_clock] C:\Users\b.alzaben\AndroidStudioProjects\loginapp\hrmsapp\build\analog_clock\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44

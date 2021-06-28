@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hrmsapp/sqlite/DatabaseHelper.dart';
+import 'WorkStatePage.dart';
 import 'fingerprintPage.dart';
 
 
@@ -50,13 +51,19 @@ class homePage extends StatelessWidget {
                 );
               },
             ),
-    /*        ListTile(
-              leading: Icon(Icons.settings), title: Text("Settings"),
+            ListTile(
+              leading: Icon(Icons.settings), title: Text("حالة الدوام"),
               onTap: () {
                 Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WorkStatePage()),
+                );
               },
             ),
-            ListTile(
+
+
+           /* ListTile(
               leading: Icon(Icons.contacts), title: Text("Contact Us"),
               onTap: () {
                 Navigator.pop(context);
