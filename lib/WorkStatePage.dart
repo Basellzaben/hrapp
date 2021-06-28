@@ -1,8 +1,30 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class WorkStatePage extends StatelessWidget {
   late BuildContext mcontext;
+
+  DateTime currentDate = DateTime.now();
+
+ /* Future<void> _selectDate(BuildContext context) async {
+
+    TextEditingController date = TextEditingController();
+
+
+    final DateTime? pickedDate = await showDatePicker(
+        context: context,
+        initialDate: currentDate,
+        firstDate: DateTime(2018),
+        lastDate: DateTime(2050));
+    if (pickedDate != null && pickedDate != currentDate)
+     // setState(() {
+        currentDate = pickedDate;
+     // });
+
+
+  }*/
+
   goBackToPreviousScreen(BuildContext context){
     Navigator.pop(context);
 
@@ -10,6 +32,26 @@ class WorkStatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController date = TextEditingController();
+
+    Future<void> _selectDate(BuildContext context) async {
+
+
+
+      final DateTime? pickedDate = await showDatePicker(
+          context: context,
+          initialDate: currentDate,
+          firstDate: DateTime(2018),
+          lastDate: DateTime(2050));
+      if (pickedDate != null && pickedDate != currentDate)
+        // setState(() {
+        currentDate = pickedDate;
+      // });
+
+
+    }
+
+
     mcontext=context;
     return Scaffold(
         resizeToAvoidBottomInset : false,
@@ -18,35 +60,53 @@ class WorkStatePage extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.only(left: 0.0,right: 0.0,top: 33.0,bottom: 0.0),
 
+
+
+
+            child: SingleChildScrollView(
             child: Column(children: [
 
               Align(
-                alignment: Alignment.topLeft,
-              child: RichText(
-                text: TextSpan(
-                  style: Theme.of(context).textTheme.headline5,
-                  children: [
-                    WidgetSpan(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                        child: Icon(Icons.date_range),
-                      ),
+                  alignment: Alignment.topLeft,
+                  child: RichText(
+                    text: TextSpan(
+                      style: Theme.of(context).textTheme.headline5,
+                      children: [
+                        WidgetSpan(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                            child: Icon(Icons.date_range),
+                          ),
+
+
+                        ),
+                        TextSpan(text: currentDate.toString().substring(0,10),   style: TextStyle(
+
+                          fontWeight: FontWeight.bold,
+                          fontSize: 23,
+                          color: Colors.black,),
+                          recognizer: new TapGestureRecognizer()..onTap = () =>
+
+
+                              _selectDate(context)
+
+                          /*  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text("رقم المستخدم او رمز المرور خطأ"),
+                              )
+                             */
+
+                             
+                         ),
+                      ],
                     ),
-                    TextSpan(text: '24/6/2021',style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 23,
-                      color: Colors.black,),),
-                  ],
-                ),
-              )
+                  )
               ),
 
-              SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                margin: const EdgeInsets.all(15.0),
-                child: Row(
+
+             Container(
+                 margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 50.0,bottom: 0.0),
+
+                 child: Row(
                 children: <Widget>[
                 Container(
                   width:60,
@@ -59,44 +119,20 @@ class WorkStatePage extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
                   ),),),
                   Expanded(
+                    child: Align(
+                        alignment: Alignment.centerRight,
                       child: Text(
                         "الدوام الـكامل",
                         textDirection: TextDirection.ltr,
                         textAlign: TextAlign.center,
                         style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
-                      ))
+                      )),)
                 ],
               )
             ),
-
-           Container(
-                  margin: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        width:60,
-                        height: 60,
-                        color: Colors.amber,
-                        child: Center(
-                          child: Text(
-                            "15",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
-                          ),),),
-                      Expanded(
-                          child: Text(
-                            "الدوام الـكامل",
-                            textDirection: TextDirection.ltr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
-                          ))
-                    ],
-                  )
-              ),
-
-
               Container(
-                  margin: const EdgeInsets.all(15.0),
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
+
                   child: Row(
                     children: <Widget>[
                       Container(
@@ -106,79 +142,336 @@ class WorkStatePage extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "15",
-                            textAlign: TextAlign.left,
+                            textAlign: TextAlign.right,
                             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
                           ),),),
                       Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "التاخير الصباحي",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
+                    ],
+                  )
+              ),
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
+
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:60,
+                        height: 60,
+                        color: Colors.amber,
+                        child: Center(
                           child: Text(
-                            "الدوام الـكامل",
-                            textDirection: TextDirection.ltr,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
-                          ))
+                            "15",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "المغادرة باكرا",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
+                    ],
+                  )
+              ),
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
+
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:60,
+                        height: 60,
+                        color: Colors.pink,
+                        child: Center(
+                          child: Text(
+                            "15",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "عدم ختم بداية الدوام",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
+                    ],
+                  )
+              ),
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
+
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:60,
+                        height: 60,
+                        color: Colors.green,
+                        child: Center(
+                          child: Text(
+                            "15",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "عدم ختم نهاية الدوام",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
+                    ],
+                  )
+              ),
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
+
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:60,
+                        height: 60,
+                        color: Colors.amberAccent,
+                        child: Center(
+                          child: Text(
+                            "15",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "غياب بدون عذر",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
+                    ],
+                  )
+              ),
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
+
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:60,
+                        height: 60,
+                        color: Colors.pink,
+                        child: Center(
+                          child: Text(
+                            "15",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "عدد ايام الاجازات",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
+                    ],
+                  )
+              ),
+
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
+
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:60,
+                        height: 60,
+                        color: Colors.green,
+                        child: Center(
+                          child: Text(
+                            "15",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "نسبة ايام العمل الفعلية",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
+                    ],
+                  )
+              ),
+
+
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
+
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:60,
+                        height: 60,
+                        color: Colors.lightGreenAccent,
+                        child: Center(
+                          child: Text(
+                            "15",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "ايام العمل الفعلية",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
                     ],
                   )
               ),
 
 
 
-                  Container(
-                      margin: const EdgeInsets.all(15.0),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            width:60,
-                            height: 60,
-                            color: Colors.purple,
-                            child: Center(
-                              child: Text(
-                                "15",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
-                              ),),),
-                          Expanded(
-                              child: Text(
-                                "الدوام الـكامل",
-                                textDirection: TextDirection.ltr,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
-                              ))
-                        ],
-                      )
-                  ),
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
 
-
-
-                  Container(
-                      margin: const EdgeInsets.all(15.0),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            width:60,
-                            height: 60,
-                            color: Colors.amber,
-                            child: Center(
-                              child: Text(
-                                "15",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
-                              ),),),
-                          Expanded(
-                              child: Text(
-                                "الدوام الـكامل",
-                                textDirection: TextDirection.ltr,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
-                              ))
-                        ],
-                      )
-                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:60,
+                        height: 60,
+                        color: Colors.pink,
+                        child: Center(
+                          child: Text(
+                            "15",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "رصيد الاجازات السنوية",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
+                    ],
+                  )
+              ),
 
 
 
 
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
 
-                ]   ,),)
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:60,
+                        height: 60,
+                        color: Colors.green,
+                        child: Center(
+                          child: Text(
+                            "15",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "رصيد الاجازات المرضية",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
+                    ],
+                  )
+              ),
+
+
+
+
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
+
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:60,
+                        height: 60,
+                        color: Colors.amber,
+                        child: Center(
+                          child: Text(
+                            "15",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "المهمات الرسمية",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
+                    ],
+                  )
+              ),
+
+
+              Container(
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 0.0),
+
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:60,
+                        height: 60,
+                        color: Colors.green,
+                        child: Center(
+                          child: Text(
+                            "15",
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              "الدورات التدريبية",
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19,),
+                            )),)
+                    ],
+                  )
+              ),
+
+
 
 
 
@@ -272,7 +565,7 @@ class WorkStatePage extends StatelessWidget {
 
       ),),*/
 
-            ],),
+            ],),),
 
           ),
 
@@ -280,4 +573,6 @@ class WorkStatePage extends StatelessWidget {
 
     );
 
-  }}
+  }
+
+}

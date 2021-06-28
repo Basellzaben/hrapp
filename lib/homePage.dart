@@ -19,6 +19,7 @@ class homePage extends StatelessWidget {
     final dbHelper = DatabaseHelper.instance;
 
     return Scaffold(
+
       appBar: AppBar(title: Text("")),
       body: Center(
 

@@ -323,25 +323,28 @@ if(reload) {
 
     final json = {
       "User_ID": id,
-      "User_Password":password
-
+      "User_Password": password
     };
 
     http.Response response = await http.post(apiUrl, body: json);
 
     var jsonResponse = jsonDecode(response.body);
-    if(jsonResponse=="1"){
+    if (jsonResponse == "1") {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => homePage()),);
-    }else{
-
+    }
+    else if (id.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("يرجى تعبئة جميع المعلومات"),
+      ));
+    }
+    else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("رقم المستخدم او رمز المرور خطأ"),
       ));
     }
   }
-
 }
 
 class SplashScreenPage extends StatelessWidget {
@@ -352,9 +355,10 @@ class SplashScreenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     _asyncMethod("https://www.yello.ae/img/ae/r/1418637587-galaxy-international-group-emirates-llc.jpg","loginTop");
     return SplashScreen(
+      imageBackground: AssetImage('assest/background2.png'),
       seconds: 6,
       navigateAfterSeconds: new MyHomePage(title: '',),
-      backgroundColor: Colors.white,
+     // backgroundColor: Colors.white,
       title: new Text('',textScaleFactor: 1.5, style: TextStyle(
         decoration: TextDecoration.underline,
       ),),
