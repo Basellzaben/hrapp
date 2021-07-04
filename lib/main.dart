@@ -48,6 +48,9 @@ class MyHomePage extends StatefulWidget {
 
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
   TextEditingController myController = TextEditingController();
 bool reload=true;
   TextEditingController usenameE = TextEditingController();
@@ -70,7 +73,7 @@ if(reload) {
 }
     return Scaffold(
 
-
+      key: _scaffoldKey,
 
       resizeToAvoidBottomInset : false,
   //    body: SingleChildScrollView(
@@ -270,7 +273,22 @@ if(reload) {
                   child: ElevatedButton(
 
                     onPressed: () async {
-                      signIn_post(usenameE.text,passwordE.text);
+
+                      _scaffoldKey.currentState!.showSnackBar(
+                          new SnackBar(duration: new Duration(seconds: 2), content:
+                          new Row(
+                            children: <Widget>[
+                              new CircularProgressIndicator(),
+                              new Text("جار تسجيل الدخول")
+                            ],
+                          ),
+                          ));
+                      signIn_post(usenameE.text,passwordE.text)
+                          .whenComplete(() =>
+                          Navigator.of(context).pushNamed("/Home")
+                      );
+
+
                       //  Login(usenameE.text,passwordE.text);
 
                       prefer = await SharedPreferences.getInstance();

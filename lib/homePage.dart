@@ -34,7 +34,8 @@ class homePage extends StatelessWidget {
               accountName: Text("Galaxy Hr System"),
               accountEmail: Text("http://www.gi-group.com"),
               currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.black12,
+               // backgroundColor: Colors.black12,
+                  backgroundImage: AssetImage('assest/background2.png'),
                 child: Text(
                   "G",
                   style: TextStyle(fontSize: 40.0),
@@ -53,7 +54,7 @@ class homePage extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.settings), title: Text("حالة الدوام"),
+              leading: Icon(Icons.work), title: Text("حالة الدوام"),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(

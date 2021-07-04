@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 
 class WorkStatePage extends StatelessWidget {
   late BuildContext mcontext;
-
+  TextEditingController dateCtl = TextEditingController();
   DateTime currentDate = DateTime.now();
+  TextEditingController date = TextEditingController();
 
  /* Future<void> _selectDate(BuildContext context) async {
 
@@ -21,31 +22,24 @@ class WorkStatePage extends StatelessWidget {
      // setState(() {
         currentDate = pickedDate;
      // });
-
-
   }*/
-
   goBackToPreviousScreen(BuildContext context){
     Navigator.pop(context);
-
   }
-
   @override
   Widget build(BuildContext context) {
-    TextEditingController date = TextEditingController();
 
     Future<void> _selectDate(BuildContext context) async {
-
-
-
-      final DateTime? pickedDate = await showDatePicker(
+       DateTime? pickedDate = await showDatePicker(
           context: context,
           initialDate: currentDate,
           firstDate: DateTime(2018),
           lastDate: DateTime(2050));
       if (pickedDate != null && pickedDate != currentDate)
         // setState(() {
-        currentDate = pickedDate;
+        {currentDate = pickedDate;
+date.text=currentDate.toString().substring(0,10);
+        }
       // });
 
 
@@ -58,7 +52,9 @@ class WorkStatePage extends StatelessWidget {
         appBar: AppBar(title: Text("حــالة دوام الموظف")),
         body: Center(
           child: Container(
-            margin: const EdgeInsets.only(left: 0.0,right: 0.0,top: 33.0,bottom: 0.0),
+            margin: const EdgeInsets.only(left: 0.0,right: 0.0,top: 5.0,bottom: 0.0),
+
+
 
 
 
@@ -67,8 +63,58 @@ class WorkStatePage extends StatelessWidget {
             child: Column(children: [
 
               Align(
+
                   alignment: Alignment.topLeft,
-                  child: RichText(
+
+                  child: TextFormField(
+                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    controller: dateCtl,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.date_range),
+                  //    icon: Icons.date_range,
+                      labelText: currentDate.toString().substring(0,10),
+                      hintText: "",),
+                    onTap: () async{
+                      DateTime date = DateTime(2008);
+                      FocusScope.of(context).requestFocus(new FocusNode());
+
+                      date = (await showDatePicker(
+                          context: context,
+                          initialDate:DateTime.now(),
+                          firstDate:DateTime(2008),
+                          lastDate: DateTime(2050)))!;
+
+                      dateCtl.text = date.toString().substring(0,10);},
+
+
+                  )
+                /*RaisedButton(
+                    onPressed: () {
+                      _selectDate(context);
+                    },
+                    color: Theme.of(context).accentColor,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Icon(
+                          Icons.date_range,
+                          color: Colors.white,
+                        ),
+                          Text(
+                            currentDate.toString().substring(0,10),
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ),*/
+                  ),
+
+                /*RichText(
                     text: TextSpan(
                       style: Theme.of(context).textTheme.headline5,
                       children: [
@@ -90,17 +136,16 @@ class WorkStatePage extends StatelessWidget {
 
                               _selectDate(context)
 
-                          /*  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          *//*  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text("رقم المستخدم او رمز المرور خطأ"),
                               )
-                             */
+                             *//*
 
-                             
+
                          ),
                       ],
                     ),
-                  )
-              ),
+                  )*/
 
 
              Container(
