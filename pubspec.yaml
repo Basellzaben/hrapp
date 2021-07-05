@@ -42,6 +42,9 @@ dev_dependencies:
     sdk: flutter
   analog_clock:
   shared_preferences: ^2.0.6
+  google_fonts: ^2.0.0 # it helps us to use google fonts on our app
+  flutter_svg: ^0.19.3  # it helps us to use SVG in our app
+  provider: ^4.3.2+1 # Our state management package
 
 
 # For information on the generic Dart part of this file, see the
