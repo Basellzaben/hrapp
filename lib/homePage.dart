@@ -9,22 +9,23 @@ import 'main.dart';
 class homePage extends StatelessWidget {
   final dbHelper = DatabaseHelper.instance;
 
-  //onPressed:() => Navigator.of().pop();
+// onPressed:() => Navigator.of().pop();
 
- /* goBackToPreviousScreen(BuildContext context){
+  goBackToPreviousScreen(BuildContext context){
    // Navigator.pop(context);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => homePage()),);
   }
-*/
+
+
 
   @override
   Widget build(BuildContext context) {
    // final dbHelper = DatabaseHelper.instance;
 
     return Scaffold(
-      appBar: AppBar(title: Text('')
+      appBar: AppBar(title: Text('المـلف الشخصي')
 
 
       ),

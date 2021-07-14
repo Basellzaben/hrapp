@@ -159,7 +159,7 @@ height: 120,
             margin: const EdgeInsets.only(top: 0.0),
 
             child: Text(
-              data!.JobTitle,
+              data.JobTitle,
               style: TextStyle(
                   fontSize: 15,
                   color: Colors.black45,
@@ -223,7 +223,7 @@ height: 120,
               alignment: Alignment.topRight,
               child: Text(
 
-                department,
+                data.EmployeeDepartmentDescription,
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.black,
@@ -290,7 +290,7 @@ height: 120,
               alignment: Alignment.topRight,
               child: Text(
 
-                data!.Education_Desc,
+                data.Education_Desc,
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.black,
@@ -323,7 +323,7 @@ height: 120,
               alignment: Alignment.topRight,
               child: Text(
 
-                data!.AttStatus,
+                data.AttStatus,
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.black,
@@ -356,13 +356,36 @@ height: 120,
               alignment: Alignment.topRight,
               child: Text(
 
-                data!.YearsOfExp,
+                data.YearsOfExp,
                 style: TextStyle(
                     fontSize: 15,
                     color: Colors.black,
-                    fontWeight: FontWeight.bold),
+                    fontWeight: FontWeight.bold
+                ),
               ),)
             ,),
+
+
+          Container(
+            margin: const EdgeInsets.only(top: 0.0,right: 10.0,left: 5.0,bottom: 20.0),
+            width: 100,
+            height: 30,
+            decoration: new BoxDecoration(
+                color: Colors.black12
+            ),
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+
+              "الاجـــازات",
+                style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold
+                ),
+              ),)
+            ,),
+
 
 
 /*          Container(
