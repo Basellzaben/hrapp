@@ -33,7 +33,7 @@ class fingerprintPage extends StatelessWidget {
         child: Consumer<MyThemeModel>(
           builder: (context, theme, child) => MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Analog Clock',
+            title:'Analog Clock',
             theme: themeData(context),
             darkTheme: darkThemeData(context),
             themeMode: theme.isLightTheme ? ThemeMode.light : ThemeMode.dark,
@@ -159,10 +159,10 @@ class ClockPainter extends CustomPainter {
 String getSystemTime() {
   var now = new DateTime.now();
   print(now);
-  return new DateFormat("H:m:s").format(now);
+  return new DateFormat("HH:mm:ss").format(now);
 }
-/*
 
+/*
 
 
   getData() async {

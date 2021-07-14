@@ -10,11 +10,11 @@ import 'package:splashscreen/splashscreen.dart';
 import 'homePage.dart';
 import 'sqlite/DatabaseHelper.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   final dbHelper = DatabaseHelper.instance;
   // This widget is the root of your application.
@@ -23,11 +23,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: SplashScreenPage(),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'title.en',
       theme: ThemeData(
 
         primarySwatch: Colors.deepPurple,
       ),
+
+
+
+
       //home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -77,9 +81,7 @@ if(reload) {
   //    body: SingleChildScrollView(
 
 
-
         body: Container(
-
             decoration: BoxDecoration(
               image: DecorationImage(image: AssetImage("assest/background2.png"), fit: BoxFit.cover),
             ),
@@ -91,15 +93,13 @@ if(reload) {
                 fit: BoxFit.cover,
               ),
             ),*/
-         margin: const EdgeInsets.only(left: 0.0,right: 0.0,top: 0.0,bottom: 0.0),
+       //  margin: const EdgeInsets.only(left: 0.0,right: 0.0,top: 0.0,bottom: 0.0),
           /*margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 50.0,bottom: 10.0),
         color: Colors.white,
             */
           width: MediaQuery.of(context).size.height,
           height: MediaQuery.of(context).size.height,
             child: Column(children: [
-
-
 
             Card(
 
@@ -164,8 +164,6 @@ if(reload) {
 
                       ),
 
-
-
                     Container(
                       color: Colors.transparent,
                 margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 40.0,bottom: 12.0),
@@ -203,7 +201,6 @@ if(reload) {
     )
     ),
     ),
-
     ),
 
 
@@ -224,13 +221,18 @@ if(reload) {
                   setState(() {
                     //_valueCheck = value;
                   rememberme=value!; });
-
                   },
                 activeColor: Theme.of(context).primaryColor),
-            Text("تذكر معلومات الدخول"),
+          Text("تذكر معلومات الدخول")
           ],
         ),
       ),
+
+
+
+
+
+
 
                       /*  Align(
                         alignment: Alignment.topLeft,
@@ -262,7 +264,7 @@ if(reload) {
             ),
 
               Container(
-                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 50.0,bottom: 50.0),
+                  margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 50.0,bottom: 20.0),
                   color: Colors.transparent,
 
             //      color: Colors.deepPurple,
@@ -273,9 +275,10 @@ if(reload) {
                     onPressed: () async {
 
                       _scaffoldKey.currentState!.showSnackBar(
-                          new SnackBar(duration: new Duration(seconds: 2), content:
+                          new SnackBar(duration: new Duration(seconds: 4), content:
                           new Row(
                             children: <Widget>[
+
                               new CircularProgressIndicator(),
                               new Text("جار تسجيل الدخول")
                             ],
@@ -290,6 +293,8 @@ if(reload) {
                       //  Login(usenameE.text,passwordE.text);
 
                       prefer = await SharedPreferences.getInstance();
+                      prefer.setString('usenameinfo', usenameE.text);
+Globalvireable.id=usenameE.text;
                       if(rememberme)
                       {
                         prefer.setString('usenameE', usenameE.text);
@@ -298,14 +303,31 @@ if(reload) {
                       }
 
                     },
-
                     child: Text('تسجيل الدخول'),
                   )
               ),
 
 
 
+              Container(
+                  alignment: Alignment.bottomCenter,
+                  width:180, //MediaQuery.of(context).size.height,
+                  height:12, //MediaQuery.of(context).size.height,
+                // margin: const EdgeInsets.only(left: 12.0,right: 12.0,top: 5.0,bottom: 0.0),
+             //     color: Colors.black38,
+                  child: Align(
 
+                    alignment: Alignment.bottomCenter,
+
+                    child: Text(
+                      "powered by galaxy international group",
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.black45,
+                        /*  fontWeight: FontWeight.bold*/),
+                    ),)
+
+              ),
 
             ])
      // This trailing comma makes auto-formatting nicer for build methods.
@@ -333,16 +355,22 @@ if(reload) {
     passwordE.text=password!;
   }
 
+  /*signIn_post(String id ,String password) async {
 
-  signIn_post(String id ,String password) async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => homePage()),);
+  }*/
+
+ signIn_post(String id ,String password) async {
     Uri apiUrl = Uri.parse("http://10.0.1.63:8017/api/User/CheckUser");
 
     final json = {
       "User_ID": id,
       "User_Password": password
     };
-
     http.Response response = await http.post(apiUrl, body: json);
+
 
     var jsonResponse = jsonDecode(response.body);
     if (jsonResponse == "1") {
@@ -434,14 +462,14 @@ class SplashScreenPage extends StatelessWidget {
 
 
 
-
+/*
   void _query() async {
     final allRows = await dbHelper.queryAllRows();
     print('query all rows:'+allRows.toString());
     allRows.forEach(print);
-  }
+  }*/
 
-  
+
     // ignore: non_constant_identifier_names
     /*signIn_post(String id ,String password) async {
    Uri apiUrl = "http://10.0.1.63:8017/api/User/CheckUser" as Uri;

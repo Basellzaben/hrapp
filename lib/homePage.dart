@@ -4,35 +4,34 @@ import 'package:hrmsapp/sqlite/DatabaseHelper.dart';
 import 'FingerPrint/fingerprintPage.dart';
 import 'ProfilePage.dart';
 import 'WorkStatePage.dart';
-
+import 'main.dart';
 
 class homePage extends StatelessWidget {
   final dbHelper = DatabaseHelper.instance;
 
-  goBackToPreviousScreen(BuildContext context){
+  //onPressed:() => Navigator.of().pop();
 
-    Navigator.pop(context);
-
+ /* goBackToPreviousScreen(BuildContext context){
+   // Navigator.pop(context);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => homePage()),);
   }
+*/
 
   @override
   Widget build(BuildContext context) {
-    final dbHelper = DatabaseHelper.instance;
+   // final dbHelper = DatabaseHelper.instance;
 
     return Scaffold(
-      appBar: AppBar(title: Text("الملف الشخصي")),
+      appBar: AppBar(title: Text('')
+
+
+      ),
      // appBar: AppBar(title: Text("")),
       body: Center(
         child: ProfilePage(),
       ),
-
-
-
-
-
-
-
-
 
 
 
@@ -56,7 +55,7 @@ class homePage extends StatelessWidget {
             ),
 
             ListTile(
-              leading: Icon(Icons.login), title: Text("بصمة الدوام الالكترونية"),
+              leading: Icon(Icons.access_time), title: Text("بصمة الدوام الالكترونية"),
               onTap: () {
                 Navigator.pop(context);
                 Navigator.push(
@@ -76,6 +75,19 @@ class homePage extends StatelessWidget {
               },
             ),
 
+
+
+            ListTile(
+              leading: Icon(Icons.logout), title: Text("تـسجيل الخروج"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyHomePage(title: '',)),
+                );
+              },
+            ),
+
            /* ListTile(
               leading: Icon(Icons.contacts), title: Text("Contact Us"),
               onTap: () {
@@ -86,5 +98,11 @@ class homePage extends StatelessWidget {
         ),
       ),
     );
+
+
+
   }
+
+
+
 }

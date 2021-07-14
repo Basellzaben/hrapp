@@ -1,16 +1,14 @@
 import 'dart:async';
 import 'dart:math';
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hrmsapp/models/my_theme_provider.dart';
 import 'package:provider/provider.dart';
-
-
 import 'clock_painter.dart';
 import 'constants.dart';
+
+
 
 class Clock extends StatefulWidget {
   @override

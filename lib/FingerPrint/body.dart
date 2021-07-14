@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hrmsapp/models/my_theme_provider.dart';
 import 'package:provider/provider.dart';
-
-
 import 'clock.dart';
-
 import 'time_in_hour_and_minute.dart';
 
 class Body extends StatelessWidget {
@@ -23,8 +20,8 @@ class Body extends StatelessWidget {
                 onTap: () => theme.changeTheme(),
                 child: Text(
                   theme.isLightTheme
-                      ?   "Chack In"
-                      :   "Chack Out",
+                      ?   "Check In"
+                      :   "Check Out",
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
               ),

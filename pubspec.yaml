@@ -22,6 +22,9 @@ environment:
 
 dependencies:
   flutter:
+
+    sdk: flutter
+  flutter_localizations: #Add this line
     sdk: flutter
 
 
@@ -33,12 +36,17 @@ dependencies:
   flutter_analog_clock: ^0.1.1
   intl: ^0.17.0
   http: 0.13.3
+
   sqflite: ^2.0.0+3
   path_provider: ^2.0.1
   animated_splash: ^1.0.0
 flutter_native_splash: ^1.2.0
+
+
+
 dev_dependencies:
   flutter_test:
+
     sdk: flutter
   analog_clock:
   shared_preferences: ^2.0.6
