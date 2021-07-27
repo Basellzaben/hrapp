@@ -1,5 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:io' show Platform;
+import 'package:hrmsapp/LanguageProvider.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:hrmsapp/GlobalVar/Globalvireables.dart';
@@ -18,6 +21,7 @@ void main() {
 class MyApp extends StatelessWidget {
   final dbHelper = DatabaseHelper.instance;
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -65,9 +69,11 @@ String logo="";
 
   @override
   Widget build(BuildContext context) {
+    //var lan=Provider.of<LanguageProvider>(context,listen: true);
     SharedPreferences prefer;
 
-if(reload) {
+
+    if(reload) {
   getuserdata();
   reload=false;
 }else{
@@ -141,7 +147,7 @@ if(reload) {
                         // height: MediaQuery.of(context).size.height,
 
                         child: TextFormField(
-
+textAlign: LanguageProvider.TxtAlign(),
                             controller:usenameE,
                           decoration: InputDecoration(
 
@@ -155,8 +161,10 @@ if(reload) {
                               ),
 
                               border: UnderlineInputBorder(),
-                              labelText: 'أدخل اسم المستخدم'
+                              labelText: LanguageProvider.getTexts('username').toString()
+
                               ,labelStyle:  TextStyle(
+
     color:Colors.black87,
     )
                           ),
@@ -172,6 +180,8 @@ if(reload) {
                 width: MediaQuery.of(context).size.height,
                // height: MediaQuery.of(context).size.height,
                   child: TextFormField(
+                    textAlign: LanguageProvider.TxtAlign(),
+
                     /*controller:passwordE,
                       obscureText:true,
 
@@ -195,8 +205,11 @@ if(reload) {
     ),
 
     border: UnderlineInputBorder(),
-    labelText: 'أدخل رمز المرور'
-    ,labelStyle:  TextStyle(
+
+    labelText: LanguageProvider.getTexts('password').toString(),
+
+
+    labelStyle:  TextStyle(
     color:Colors.black87,
     )
     ),
@@ -223,7 +236,9 @@ if(reload) {
                   rememberme=value!; });
                   },
                 activeColor: Theme.of(context).primaryColor),
-          Text("تذكر معلومات الدخول")
+           //Text("تذكر معلومات الدخول")
+          //  Text(lan.getTexts('login').toString())
+            Text(LanguageProvider.getTexts('savelogindetails').toString())
           ],
         ),
       ),
@@ -274,13 +289,16 @@ if(reload) {
 
                     onPressed: () async {
 
+                      String languageCode = Platform.localeName.split('_')[0];
+
+
                       _scaffoldKey.currentState!.showSnackBar(
                           new SnackBar(duration: new Duration(seconds: 4), content:
                           new Row(
                             children: <Widget>[
-
                               new CircularProgressIndicator(),
-                              new Text("جار تسجيل الدخول")
+//                              new Text("جار تسجيل الدخول")
+                              new Text(languageCode)
                             ],
                           ),
                           ));
@@ -303,7 +321,7 @@ Globalvireable.id=usenameE.text;
                       }
 
                     },
-                    child: Text('تسجيل الدخول'),
+                    child: Text(LanguageProvider.getTexts('login').toString()),
                   )
               ),
 

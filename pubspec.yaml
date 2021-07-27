@@ -24,6 +24,7 @@ dependencies:
   flutter:
 
     sdk: flutter
+  provider: ^4.1.2
   flutter_localizations: #Add this line
     sdk: flutter
 
