@@ -435,7 +435,8 @@ controller: namecontroler,
         /* add child content here */,
       );
 
-    } else {
+    }
+    else {
     return Center(child: CircularProgressIndicator());
     }
     }),
