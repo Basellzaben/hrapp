@@ -38,14 +38,13 @@ dependencies:
   splashscreen: ^1.2.0
   geolocator: ^7.3.1
 
-
-
-
-
-
-
-  hexcolor: ^2.0.3
   flutter_analog_clock: ^0.1.1
+
+
+
+
+
+
   intl: ^0.17.0
   http: 0.13.3
 
@@ -59,7 +58,7 @@ dev_dependencies:
   flutter_test:
 
     sdk: flutter
-  analog_clock:
+
   shared_preferences: ^2.0.6
   google_fonts: ^2.0.0 # it helps us to use google fonts on our app
   flutter_svg: ^0.19.3  # it helps us to use SVG in our app
