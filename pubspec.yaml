@@ -25,6 +25,9 @@ dependencies:
 
     sdk: flutter
   provider: ^4.1.2
+  translator: ^0.1.2
+  fluttertoast: ^8.0.7
+
   flutter_localizations: #Add this line
     sdk: flutter
 
@@ -33,6 +36,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   splashscreen: ^1.2.0
+  geolocator: ^7.3.1
+
+
+
+
+
+
+
   hexcolor: ^2.0.3
   flutter_analog_clock: ^0.1.1
   intl: ^0.17.0
@@ -42,7 +53,6 @@ dependencies:
   path_provider: ^2.0.1
   animated_splash: ^1.0.0
 flutter_native_splash: ^1.2.0
-
 
 
 dev_dependencies:

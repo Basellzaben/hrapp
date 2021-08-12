@@ -1,28 +1,99 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:hrmsapp/models/WorkState.dart';
-
-
-
-import 'dart:convert';
-
-import 'package:hrmsapp/GlobalVar/Globalvireables.dart';
-
-import 'package:http/http.dart' as http;
 import 'LanguageProvider.dart';
-import 'models/WorkState.dart';
+import 'models/HttpService.dart';
+import 'models/Post.dart';
 
 class WorkStatePage extends StatelessWidget {
-  late BuildContext mcontext;
+
+  final HttpService httpService = HttpService();
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text( LanguageProvider.getTexts('workingstate').toString()),
+      ),
+      body: FutureBuilder(
+        future: httpService.getPosts(),
+        builder: (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
+          if (snapshot.hasData) {
+            List<Post>? posts = snapshot.data;
+            return ListView(
+              children: posts!
+                  .map(
+                    (Post post) => ListTile(
+
+                        leading : Container(
+    margin: const EdgeInsets.only(left:5.0,right:5.0,top: 20.0,bottom: 0.0),
+width: 300,
+                  height: 35,
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width:50,
+                        height: 50,
+                        color: Colors.green,
+                        child: Center(
+                          child: Text(
+                            post.count.toString(),
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 17),
+                          ),),),
+                      Expanded(
+                        child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              post.description,
+                              textDirection: TextDirection.ltr,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),
+                            )),)
+                    ],
+                  )
+              ),
+                 /* title: Text(post.description,textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  subtitle: Text(post.count.toString()
+                    ,textAlign: TextAlign.center,
+                      style: TextStyle(
+
+                        color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
+                  ),
+*/
+
+
+                ),
+              )
+                  .toList(),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
+    );
+  }}
+
+  /*late BuildContext mcontext;
   TextEditingController dateCtl = TextEditingController();
   DateTime currentDate = DateTime.now();
   TextEditingController date = TextEditingController();
   var data;
+//  var arr = new List.filled(5, null, growable: false);
 
 
-  Future<WorkState> getworkdata() async {
-    Uri apiUrl = Uri.parse("http://10.0.1.63:8017/api/EmployeeInfo/GetEmployeePersonalInfo/"+Globalvireable.id);
+
+  Future<WorkState> getUser() async {
+    Uri apiUrl = Uri.parse("http://10.0.1.63:8017/api/EmployeeInfo/GetEmployeeWorkInfo/9");
 
 
     http.Response response = await http.get(apiUrl);
@@ -34,24 +105,21 @@ class WorkStatePage extends StatelessWidget {
     return data;
   }
 
- /* Future<void> _selectDate(BuildContext context) async {
-
-    TextEditingController date = TextEditingController();
 
 
-    final DateTime? pickedDate = await showDatePicker(
-        context: context,
-        initialDate: currentDate,
-        firstDate: DateTime(2018),
-        lastDate: DateTime(2050));
-    if (pickedDate != null && pickedDate != currentDate)
-     // setState(() {
-        currentDate = pickedDate;
-     // });
-  }*/
+  *//*Future<List<WorkState>?> getUser() async {
+    Uri apiUrl = Uri.parse("http://10.0.1.63:8017/api/EmployeeInfo/GetEmployeePersonalInfo/"+Globalvireable.id);
+    http.Response response = await http.get(apiUrl);
+    var jsonResponse = jsonDecode(response.body);
+    List<WorkState>? tags = jsonResponse != null ? List.from(jsonResponse) : null;
+    return tags;
+  }*//*
+
+
   goBackToPreviousScreen(BuildContext context){
     Navigator.pop(context);
   }
+
   @override
   Widget build(BuildContext context) {
 
@@ -70,11 +138,12 @@ date.text=currentDate.toString().substring(0,10);
 
 
     }
-
-
     mcontext=context;
-    if (LanguageProvider.getTexts("language") == "language"){
+    if (LanguageProvider.getTexts("language") != "language"){
       return Scaffold(
+
+
+
       appBar: AppBar(
           centerTitle: true,
           titleSpacing:0.0,
@@ -83,6 +152,22 @@ date.text=currentDate.toString().substring(0,10);
               textDirection: TextDirection.ltr)
       ),
         body: SingleChildScrollView(
+          child: FutureBuilder(
+         *//* future: getUser(),
+    builder: (context, snapshot) {
+      List posts = snapshot.data as List;
+    if (snapshot.hasData) {*//*
+
+
+              future: httpService.getPosts(),
+              builder: (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
+                if (snapshot.hasData) {
+                  List<Post>? posts = snapshot.data;
+
+    var data = snapshot.data;
+
+//backgroundColor: Colors.white,
+    return Container(
 
     child: Center(
           child: Container(
@@ -118,7 +203,7 @@ date.text=currentDate.toString().substring(0,10);
 
 
                   )
-                /*RaisedButton(
+                *//*RaisedButton(
                     onPressed: () {
                       _selectDate(context);
                     },
@@ -141,10 +226,10 @@ date.text=currentDate.toString().substring(0,10);
 
                         ],
                       ),
-                    ),*/
+                    ),*//*
                   ),
 
-                /*RichText(
+                *//*RichText(
                     text: TextSpan(
                       style: Theme.of(context).textTheme.headline5,
                       children: [
@@ -166,16 +251,16 @@ date.text=currentDate.toString().substring(0,10);
 
                               _selectDate(context)
 
-                          *//*  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          *//**//*  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text("رقم المستخدم او رمز المرور خطأ"),
                               )
-                             *//*
+                             *//**//*
 
 
                          ),
                       ],
                     ),
-                  )*/
+                  )*//*
 
 
              Container(
@@ -189,7 +274,7 @@ date.text=currentDate.toString().substring(0,10);
                   color: Colors.pink,
                   child: Center(
                     child: Text(
-                    "15",
+                     " posts.",
                     textAlign: TextAlign.right,
                     style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white,fontSize: 19),
                   ),),),
@@ -550,7 +635,7 @@ date.text=currentDate.toString().substring(0,10);
 
 
 
-/*
+*//*
               Container(
                 margin: const EdgeInsets.only(left: 0.0,right: 0.0,top: 20.0,bottom: 0.0),
                   child: ElevatedButton(
@@ -561,16 +646,16 @@ date.text=currentDate.toString().substring(0,10);
               ),
 
 
-*/
+*//*
 
 
 
 
-            /*  Container(
+            *//*  Container(
                 margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 40.0,bottom: 0.0),
                 child: Text(getSystemTime(),style: TextStyle(fontSize: 50.0,fontWeight: FontWeight.bold),),
-              ),*/
-/*
+              ),*//*
+*//*
         Container(
         margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 40.0),
         child: FlutterAnalogClock(
@@ -596,8 +681,8 @@ date.text=currentDate.toString().substring(0,10);
         height: 150.0,
         decoration: const BoxDecoration(),
         child:Text("")
-        )),*/
-/*
+        )),*//*
+*//*
               Container( child: Container(
                 margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 50.0,bottom: 40.0),
 
@@ -607,9 +692,9 @@ date.text=currentDate.toString().substring(0,10);
 
                       // makePostRequest();
 
-                      *//*   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      *//**//*   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text("تم تسجيل الدخول بنجاح"),
-                  ),);*//*
+                  ),);*//**//*
                     },
                     child: Container(
                       child: ClipRRect(
@@ -620,11 +705,11 @@ date.text=currentDate.toString().substring(0,10);
                       ),
                     ),
                   ),
-                ),),),*/
+                ),),),*//*
 
 
 
-/*Container(
+*//*Container(
   margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 50.0,bottom: 40.0),
        child: FlatButton(
 
@@ -638,13 +723,18 @@ date.text=currentDate.toString().substring(0,10);
 
         }, child: Text(""),
 
-      ),),*/
+      ),),*//*
 
             ],),),
 
-          ),),),
+          ),),);
 
+      } else {
+      return Center(child: CircularProgressIndicator());
+      }
+    }),
 
+        )
 
     );}else{
 
@@ -694,7 +784,7 @@ date.text=currentDate.toString().substring(0,10);
 
 
                       )
-                    /*RaisedButton(
+                    *//*RaisedButton(
                     onPressed: () {
                       _selectDate(context);
                     },
@@ -717,10 +807,10 @@ date.text=currentDate.toString().substring(0,10);
 
                         ],
                       ),
-                    ),*/
+                    ),*//*
                   ),
 
-                  /*RichText(
+                  *//*RichText(
                     text: TextSpan(
                       style: Theme.of(context).textTheme.headline5,
                       children: [
@@ -742,16 +832,16 @@ date.text=currentDate.toString().substring(0,10);
 
                               _selectDate(context)
 
-                          *//*  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          *//**//*  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text("رقم المستخدم او رمز المرور خطأ"),
                               )
-                             *//*
+                             *//**//*
 
 
                          ),
                       ],
                     ),
-                  )*/
+                  )*//*
 
 
                   Container(
@@ -1150,7 +1240,7 @@ date.text=currentDate.toString().substring(0,10);
 
 
 
-/*
+*//*
               Container(
                 margin: const EdgeInsets.only(left: 0.0,right: 0.0,top: 20.0,bottom: 0.0),
                   child: ElevatedButton(
@@ -1161,16 +1251,16 @@ date.text=currentDate.toString().substring(0,10);
               ),
 
 
-*/
+*//*
 
 
 
 
-                  /*  Container(
+                  *//*  Container(
                 margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 40.0,bottom: 0.0),
                 child: Text(getSystemTime(),style: TextStyle(fontSize: 50.0,fontWeight: FontWeight.bold),),
-              ),*/
-/*
+              ),*//*
+*//*
         Container(
         margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 10.0,bottom: 40.0),
         child: FlutterAnalogClock(
@@ -1196,8 +1286,8 @@ date.text=currentDate.toString().substring(0,10);
         height: 150.0,
         decoration: const BoxDecoration(),
         child:Text("")
-        )),*/
-/*
+        )),*//*
+*//*
               Container( child: Container(
                 margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 50.0,bottom: 40.0),
 
@@ -1207,9 +1297,9 @@ date.text=currentDate.toString().substring(0,10);
 
                       // makePostRequest();
 
-                      *//*   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      *//**//*   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text("تم تسجيل الدخول بنجاح"),
-                  ),);*//*
+                  ),);*//**//*
                     },
                     child: Container(
                       child: ClipRRect(
@@ -1220,11 +1310,11 @@ date.text=currentDate.toString().substring(0,10);
                       ),
                     ),
                   ),
-                ),),),*/
+                ),),),*//*
 
 
 
-/*Container(
+*//*Container(
   margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 50.0,bottom: 40.0),
        child: FlatButton(
 
@@ -1238,7 +1328,7 @@ date.text=currentDate.toString().substring(0,10);
 
         }, child: Text(""),
 
-      ),),*/
+      ),),*//*
 
                 ],),),
 
@@ -1248,8 +1338,17 @@ date.text=currentDate.toString().substring(0,10);
 
       );
 
+
+   *//* } else {
+    return Center(child: CircularProgressIndicator());
+    }
+    }),
+
+    )*//*
+
     }
 
   }
 
 }
+*/

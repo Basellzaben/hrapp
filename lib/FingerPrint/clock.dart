@@ -12,6 +12,7 @@ import 'constants.dart';
 
 class Clock extends StatefulWidget {
   @override
+
   _ClockState createState() => _ClockState();
 }
 
@@ -21,7 +22,7 @@ class _ClockState extends State<Clock> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(Duration(seconds: 2), (timer) {
       setState(() {
         _dateTime = DateTime.now();
       });
@@ -30,11 +31,14 @@ class _ClockState extends State<Clock> {
 
   @override
   Widget build(BuildContext context) {
+    debugShowCheckedModeBanner:false;
+
     return Stack(
+
       children: [
         Padding(
           padding:
-          EdgeInsets.symmetric(horizontal: 20),
+          EdgeInsets.symmetric(horizontal: 40),
           child: AspectRatio(
             aspectRatio: 1,
             child: Container(
@@ -44,7 +48,7 @@ class _ClockState extends State<Clock> {
                 boxShadow: [
                   BoxShadow(
                     offset: Offset(0, 0),
-                    color: kShadowColor.withOpacity(0.14),
+                    color: kShadowColor.withOpacity(0.10),
                     blurRadius: 64,
                   ),
                 ],
@@ -59,7 +63,7 @@ class _ClockState extends State<Clock> {
           ),
         ),
         Positioned(
-          top: 50,
+          top: 20,
           left: 50,
           right: 50,
           child: Consumer<MyThemeModel>(
@@ -69,8 +73,8 @@ class _ClockState extends State<Clock> {
                 theme.isLightTheme
                     ? "assest/Sun.svg"
                     : "assest/Moon.svg",
-                height: 24,
-                width: 24,
+                height: 25,
+                width: 25,
                 color: Theme.of(context).primaryColor,
               ),
             ),

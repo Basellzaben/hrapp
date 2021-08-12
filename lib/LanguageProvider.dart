@@ -16,7 +16,10 @@ class LanguageProvider with ChangeNotifier{
     ,"workingstate":"حالة الدوام"
     ,"Logout":"تسجيل الخروج"
     ,"language":"عربي"
-
+    ,"log":" جار تسجيل الدخول يرجى الانتظار"
+    ,"logerror":" رقم المستخدم او رمز المرور خطأ"
+    ,"distancesafe":"المسافة المسموح بها"
+    ,"distancedang":"  المسافة الى الشركة   "
   };
   static Map<String , Object?>  en={
     "savelogindetails":" Remember login information"
@@ -28,7 +31,10 @@ class LanguageProvider with ChangeNotifier{
     ,"workingstate":"working state"
     ,"Logout":"Logout"
     ,"language":"language"
-
+    ,"log":"Signing in"
+    ,"logerror":"Wrong user number or passcode"
+    ,"distancesafe":"Allowed distance"
+    ,"distancedang":"The distance to the company"
   };
 
 
@@ -40,7 +46,7 @@ notifyListeners();
   }
 
   static TextDirection getDirection(){
-    String languageCode = Platform.localeName.split('_')[0];
+    String languageCode = Globalvireable.languageCode;//Platform.localeName.split('_')[0];
 
     if(languageCode == "ar")
       return TextDirection.rtl;
@@ -49,7 +55,8 @@ notifyListeners();
   }
 
   static TextAlign TxtAlign(){
-    String languageCode = Platform.localeName.split('_')[0];
+   // String languageCode = Platform.localeName.split('_')[0];
+    String languageCode = Globalvireable.languageCode;//Platform.localeName.split('_')[0];
 
     if(languageCode == "ar")
       return TextAlign.right;
@@ -59,7 +66,8 @@ notifyListeners();
 
 
   static Object? getTexts(String txt){
-    String languageCode = Platform.localeName.split('_')[0];
+   // String languageCode = Platform.localeName.split('_')[0];
+    String languageCode = Globalvireable.languageCode;//Platform.localeName.split('_')[0];
 
     if(languageCode == "ar")
     return ar[txt];
@@ -67,9 +75,11 @@ notifyListeners();
   }
 
   static getStringValuesSF(String key) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  //  SharedPreferences prefs = await SharedPreferences.getInstance();
+    String prefs = Globalvireable.languageCode;//Platform.localeName.split('_')[0];
+
     //Return String
-    String? stringValue = prefs.getString(key);
+    String? stringValue = prefs/*.getString(key);*/;
     if(stringValue !="en" && stringValue !="ar")
       return "en";
     return stringValue;

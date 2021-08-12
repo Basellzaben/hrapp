@@ -15,7 +15,7 @@ class _TimeInHourAndMinuteState extends State<TimeInHourAndMinute> {
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(Duration(seconds: 0), (timer) {
       if (_timeOfDay.minute != TimeOfDay.now().minute) {
         setState(() {
           _timeOfDay = TimeOfDay.now();
@@ -31,6 +31,8 @@ class _TimeInHourAndMinuteState extends State<TimeInHourAndMinute> {
 
   @override
   Widget build(BuildContext context) {
+    debugShowCheckedModeBanner:false;
+
     String _period = _timeOfDay.period == DayPeriod.am ? "AM" : "PM";
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +48,7 @@ class _TimeInHourAndMinuteState extends State<TimeInHourAndMinute> {
           quarterTurns: 3,
           child: Text(
             _period,
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 15),
           ),
         ),
       ],

@@ -13,25 +13,29 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-
 import 'home_screen.dart';
-
 
 class fingerprintPage extends StatelessWidget {
   late BuildContext mcontext;
 
   goBackToPreviousScreen(BuildContext context) {
     Navigator.pop(context);
+    debugShowCheckedModeBanner:false;
+
   }
 
   @override
   Widget build(BuildContext context) {
     mcontext = context;
     getSystemTime();
+    debugShowCheckedModeBanner:false;
+
     return ChangeNotifierProvider(
+
         create: (context) => MyThemeModel(),
         child: Consumer<MyThemeModel>(
-          builder: (context, theme, child) => MaterialApp(
+          builder: (context, theme, child) =>
+              MaterialApp(
             debugShowCheckedModeBanner: false,
             title:'Analog Clock',
             theme: themeData(context),
@@ -44,6 +48,7 @@ class fingerprintPage extends StatelessWidget {
   }
 }
   class ClockView extends StatefulWidget  {
+
   @override
   _ClockViewState createState() => _ClockViewState();
   }
@@ -58,7 +63,10 @@ class _ClockViewState extends State<ClockView> {
 
   @override
   Widget build(BuildContext context) {
+    debugShowCheckedModeBanner: false;
+
     return Container(
+
       width: 300,
       height: 300,
       child: Transform.rotate(
@@ -70,7 +78,6 @@ class _ClockViewState extends State<ClockView> {
     );
   }
 }
-
 class ClockPainter extends CustomPainter {
   var dateTime = DateTime.now();
 
@@ -197,8 +204,4 @@ String getSystemTime() {
       content: Text(responseBody),
 
     ),);
-
-
-
-
   }*/

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:io' show Platform;
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hrmsapp/LanguageProvider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -10,6 +11,7 @@ import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:splashscreen/splashscreen.dart';
+//import 'package:translator/translator.dart';
 import 'homePage.dart';
 import 'sqlite/DatabaseHelper.dart';
 import 'package:http/http.dart' as http;
@@ -18,9 +20,18 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 void main() {
   runApp(MyApp());
 }
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   final dbHelper = DatabaseHelper.instance;
-  // This widget is the root of your application.
+
+  //GoogleTranslator translator =new  GoogleTranslator();
+
+String out="";
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +57,8 @@ class MyHomePage extends StatefulWidget {
   final dbHelper = DatabaseHelper.instance;
 
 
+
+
   final String title;
 
   @override
@@ -54,6 +67,24 @@ class MyHomePage extends StatefulWidget {
 
 
 class _MyHomePageState extends State<MyHomePage> {
+/*
+String out="";
+  GoogleTranslator translator =new  GoogleTranslator();
+
+
+  void trans(){
+
+    translator.translate("text", to: 'ar')
+        .then((output){
+      setState(() {
+        out=output.text;
+      });
+      print(out);
+    },);
+
+  }*/
+
+
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
@@ -79,6 +110,7 @@ String logo="";
 }else{
 
 }
+    try{
     return Scaffold(
 
       key: _scaffoldKey,
@@ -134,7 +166,8 @@ String logo="";
                           width: MediaQuery.of(context).size.height,
                           // height: MediaQuery.of(context).size.height,
                           //  child:  Image.network('http://www.gi-group.com/images/img/logo.png'),
-                          child: Image.file(File(Globalvireable.logo), width: 400.0, height: 100.0)
+                     //     child: Image.file(File(Globalvireable.logo), width: 400.0, height: 100.0)
+                        child: Image.file(File(Globalvireable.logo), width: 400.0, height: 100.0)
                       ),
 
 
@@ -232,6 +265,7 @@ textAlign: LanguageProvider.TxtAlign(),
 
                 onChanged:(bool? value) {
                   setState(() {
+                 //   trans();
                     //_valueCheck = value;
                   rememberme=value!; });
                   },
@@ -288,35 +322,31 @@ textAlign: LanguageProvider.TxtAlign(),
                   child: ElevatedButton(
 
                     onPressed: () async {
+    try{
+                        signIn_post(usenameE.text, passwordE.text);;
+                           /* .whenComplete(() =>
+                            Navigator.of(context).pushNamed("/Home")
+                        );
+*/
+                        prefer = await SharedPreferences.getInstance();
+                        prefer.setString('usenameinfo', usenameE.text);
+                        Globalvireable.id=usenameE.text;
+                        if(rememberme)
+                        {
+                          prefer.setString('usenameE', usenameE.text);
+                          prefer.setString('passwordE', passwordE.text);
 
-                      String languageCode = Platform.localeName.split('_')[0];
+                        }else{
+                          prefer.setString('', usenameE.text);
+                          prefer.setString('', passwordE.text);
+
+                        }
 
 
-                      _scaffoldKey.currentState!.showSnackBar(
-                          new SnackBar(duration: new Duration(seconds: 4), content:
-                          new Row(
-                            children: <Widget>[
-                              new CircularProgressIndicator(),
-//                              new Text("جار تسجيل الدخول")
-                              new Text(languageCode)
-                            ],
-                          ),
-                          ));
-                      signIn_post(usenameE.text,passwordE.text)
-                          .whenComplete(() =>
-                          Navigator.of(context).pushNamed("/Home")
-                      );
-
-
-                      //  Login(usenameE.text,passwordE.text);
-
-                      prefer = await SharedPreferences.getInstance();
-                      prefer.setString('usenameinfo', usenameE.text);
-Globalvireable.id=usenameE.text;
-                      if(rememberme)
-                      {
-                        prefer.setString('usenameE', usenameE.text);
-                        prefer.setString('passwordE', passwordE.text);
+                      }on Exception catch (_) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("يوجد مشكلة , يرجى المحاولة لاحقا"),
+                        ));
 
                       }
 
@@ -350,6 +380,13 @@ Globalvireable.id=usenameE.text;
             ])
      // This trailing comma makes auto-formatting nicer for build methods.
         ), );
+
+  }on Exception catch (_) {
+
+  return Center(child: CircularProgressIndicator());
+
+  }
+
   }
 
 
@@ -381,7 +418,22 @@ Globalvireable.id=usenameE.text;
   }*/
 
  signIn_post(String id ,String password) async {
-    Uri apiUrl = Uri.parse("http://10.0.1.63:8017/api/User/CheckUser");
+
+
+   _scaffoldKey.currentState!.showSnackBar(
+       new SnackBar(duration: new Duration(seconds: 1), content:
+       new
+         Row(
+         children: <Widget>[
+           new CircularProgressIndicator(),
+//                              new Text("جار تسجيل الدخول")
+           new Text(LanguageProvider.getTexts("log").toString())
+         ],
+       ),
+       ));
+
+   int c=0;
+    Uri apiUrl = Uri.parse(Globalvireable.loginapi);
 
     final json = {
       "User_ID": id,
@@ -392,22 +444,79 @@ Globalvireable.id=usenameE.text;
 
     var jsonResponse = jsonDecode(response.body);
     if (jsonResponse == "1") {
+      c=1;
+      print(jsonResponse+"   ggg");
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => homePage()),);
-    }
-    else if (id.isEmpty || password.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("يرجى تعبئة جميع المعلومات"),
-      ));
+    MaterialPageRoute(builder: (context) => homePage()),);
     }
     else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+     /* ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("رقم المستخدم او رمز المرور خطأ"),
       ));
+*/
+
+
+      _scaffoldKey.currentState!.showSnackBar(
+          new SnackBar(duration: new Duration(seconds: 1), content:
+          new Row(
+            children: <Widget>[
+           //   new CircularProgressIndicator(),
+//                              new Text("جار تسجيل الدخول")
+              new Text(LanguageProvider.getTexts("logerror").toString())
+            ],
+          ),
+          ));
+
+
+    /*  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("رقم المستخدم او رمز المرور خطأ"),
+      ));*/
     }
-  }
+ /*.closed
+        .then((SnackBarClosedReason reason) {
+     if(c==0)
+
+     ScaffoldMessenger.of(context).removeCurrentSnackBar();
+
+     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+       content: Text("رقم المستخدم او رمز المرور خطأ"),
+     ));
+
+        });
+*/
+if(c==0) {
+
+  /*ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+ ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text("رقم المستخدم او رمز المرور خطأ"),
+  ));
+
+  Fluttertoast.showToast(
+      msg: "This is Toast messaget",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1
+  );
+
+  Fluttertoast.showToast(
+      msg: "رقم المستخدم او رمز المرور خطأ",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0
+  );
+*/
 }
+ }
+
+ }
+
 
 class SplashScreenPage extends StatelessWidget {
   final dbHelper = DatabaseHelper.instance;
