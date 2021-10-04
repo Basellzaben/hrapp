@@ -52,7 +52,7 @@ class _ExampleState extends State<Body> {
   Future<Location> getLocation1() async {
 
     late Uri apiUrl = Uri.parse(
-        "http://10.0.1.63:8017/api/Destination/GetLocation");
+        "http://10.0.1.60:8017/api/Destination/GetLocation");
     http.Response response = await http.get(apiUrl);
     late var jsonResponse = jsonDecode(response.body);
     // var parsedJson = json.decode(jsonResponse);

@@ -11,6 +11,7 @@ import 'package:http/http.dart';
 import 'package:path_provider/path_provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:splashscreen/splashscreen.dart';
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:translator/translator.dart';
 import 'homePage.dart';
 import 'sqlite/DatabaseHelper.dart';
@@ -242,7 +243,7 @@ textAlign: LanguageProvider.TxtAlign(),
     labelText: LanguageProvider.getTexts('password').toString(),
 
 
-    labelStyle:  TextStyle(
+    labelStyle: TextStyle(
     color:Colors.black87,
     )
     ),
@@ -315,7 +316,6 @@ textAlign: LanguageProvider.TxtAlign(),
               Container(
                   margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 50.0,bottom: 20.0),
                   color: Colors.transparent,
-
             //      color: Colors.deepPurple,
                   width: MediaQuery.of(context).size.height,
                    height:60,
@@ -323,7 +323,8 @@ textAlign: LanguageProvider.TxtAlign(),
 
                     onPressed: () async {
     try{
-                        signIn_post(usenameE.text, passwordE.text);;
+                        signIn_post(usenameE.text, passwordE.text);
+                        ;
                            /* .whenComplete(() =>
                             Navigator.of(context).pushNamed("/Home")
                         );
@@ -366,14 +367,24 @@ textAlign: LanguageProvider.TxtAlign(),
                   child: Align(
 
                     alignment: Alignment.bottomCenter,
+  //
 
-                    child: Text(
-                      "powered by galaxy international group",
-                      style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.black45,
-                        /*  fontWeight: FontWeight.bold*/),
-                    ),)
+    child: GestureDetector(
+    onTap: () {
+
+      launchURL(Globalvireable.galaxyinternationalURL);
+print("ff");
+    },
+    child: new  Text(
+      "powered by galaxy international group",
+      style: TextStyle(
+        fontSize: 10,
+        color: Colors.black45,
+        /*  fontWeight: FontWeight.bold*/),
+    ),
+    ),
+
+                   )
 
               ),
 
@@ -389,7 +400,13 @@ textAlign: LanguageProvider.TxtAlign(),
 
   }
 
-
+  launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   void _query() async {
     final allRows = await dbHelper.queryAllRows();
