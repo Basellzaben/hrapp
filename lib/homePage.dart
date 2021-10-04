@@ -348,11 +348,10 @@ if(prefer.getString('f') !=null) {
 
 
               ListTile(
-                leading: Icon(Icons.logout,
+                leading:Icon(Icons.logout,
                     textDirection: LanguageProvider.getDirection()),
                 title: Text(LanguageProvider.getTexts('leaverequest').toString()
-                    , textDirection: LanguageProvider.getDirection()),
-
+                , textDirection: LanguageProvider.getDirection()),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
