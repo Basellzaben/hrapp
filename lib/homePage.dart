@@ -332,6 +332,36 @@ if(prefer.getString('f') !=null) {
                   );
                 },
               ),
+              ListTile(
+                leading:Icon(
+                    Icons.work, textDirection: LanguageProvider.getDirection()),
+                title: Text(LanguageProvider.getTexts('workingstate').toString()
+                    , textDirection: LanguageProvider.getDirection()),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WorkStatePage()),
+                  );
+                },
+              ),
+
+
+              ListTile(
+                leading: Icon(Icons.logout,
+                    textDirection: LanguageProvider.getDirection()),
+                title: Text(LanguageProvider.getTexts('leaverequest').toString()
+                    , textDirection: LanguageProvider.getDirection()),
+
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MyHomePage(title: '',)),
+                  );
+                },
+              ),
 
 
               ListTile(
