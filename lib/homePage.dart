@@ -335,7 +335,7 @@ if(prefer.getString('f') !=null) {
               ListTile(
                 leading:Icon(
                     Icons.work, textDirection: LanguageProvider.getDirection()),
-                title: Text(LanguageProvider.getTexts('workingstate').toString()
+                title: Text(LanguageProvider.getTexts('vacationrequest').toString()
                     , textDirection: LanguageProvider.getDirection()),
                 onTap: () {
                   Navigator.pop(context);
