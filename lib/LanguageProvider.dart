@@ -21,7 +21,7 @@ class LanguageProvider with ChangeNotifier{
     ,"distancesafe":"المسافة المسموح بها"
     ,"distancedang":"  المسافة الى الشركة   "
     ,"leaverequest":"طلب مغادرة"
-    ,"vacationrequest":"طلب مغادرة"
+    ,"vacationrequest":"طلب اجازة"
   };
   static Map<String , Object?>  en={
     "savelogindetails":" Remember login information"
