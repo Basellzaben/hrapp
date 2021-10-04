@@ -105,6 +105,39 @@ String ss="ar";
               ListTile(
                 leading: Icon(Icons.logout,
                     textDirection: LanguageProvider.getDirection()),
+                title: Text(LanguageProvider.getTexts('leaverequest').toString()
+                    , textDirection: LanguageProvider.getDirection()),
+
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MyHomePage(title: '',)),
+                  );
+                },
+              ),
+
+              ListTile(
+                leading: Icon(Icons.logout,
+                    textDirection: LanguageProvider.getDirection()),
+                title: Text(LanguageProvider.getTexts('vacationrequest').toString()
+                    , textDirection: LanguageProvider.getDirection()),
+
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MyHomePage(title: '',)),
+                  );
+                },
+              ),
+
+
+              ListTile(
+                leading: Icon(Icons.logout,
+                    textDirection: LanguageProvider.getDirection()),
                 title: Text(LanguageProvider.getTexts('Logout').toString()
                     , textDirection: LanguageProvider.getDirection()),
 

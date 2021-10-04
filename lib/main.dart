@@ -68,23 +68,6 @@ class MyHomePage extends StatefulWidget {
 
 
 class _MyHomePageState extends State<MyHomePage> {
-/*
-String out="";
-  GoogleTranslator translator =new  GoogleTranslator();
-
-
-  void trans(){
-
-    translator.translate("text", to: 'ar')
-        .then((output){
-      setState(() {
-        out=output.text;
-      });
-      print(out);
-    },);
-
-  }*/
-
 
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -124,18 +107,6 @@ String logo="";
             decoration: BoxDecoration(
               image: DecorationImage(image: AssetImage("assest/background2.png"), fit: BoxFit.cover),
             ),
-
-
-           /* decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assest/background.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),*/
-       //  margin: const EdgeInsets.only(left: 0.0,right: 0.0,top: 0.0,bottom: 0.0),
-          /*margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 50.0,bottom: 10.0),
-        color: Colors.white,
-            */
           width: MediaQuery.of(context).size.height,
           height: MediaQuery.of(context).size.height,
             child: Column(children: [
@@ -155,20 +126,13 @@ String logo="";
                 margin: const EdgeInsets.only(left: 15.0,right: 15.0,top: 120.0,bottom: 0.0),
 
                     child: Column(children: [
-                     // Container(height: 100.0),
-                    /*  Expanded(
-                        child: TextField(expands: true),
-                      )*/
 
                       Container(
                           color: Colors.transparent,
                          margin: const EdgeInsets.only(left:
                          .0,right: 10.0,top: 30.0,bottom: 15.0),
                           width: MediaQuery.of(context).size.height,
-                          // height: MediaQuery.of(context).size.height,
-                          //  child:  Image.network('http://www.gi-group.com/images/img/logo.png'),
-                     //     child: Image.file(File(Globalvireable.logo), width: 400.0, height: 100.0)
-                        child: Image.file(File(Globalvireable.logo), width: 400.0, height: 100.0)
+                              child: Image.file(File(Globalvireable.logo), width: 400.0, height: 100.0)
                       ),
 
 
@@ -216,14 +180,7 @@ textAlign: LanguageProvider.TxtAlign(),
                   child: TextFormField(
                     textAlign: LanguageProvider.TxtAlign(),
 
-                    /*controller:passwordE,
-                      obscureText:true,
 
-                    decoration: InputDecoration(
-                        border: UnderlineInputBorder(),
-                        labelText: 'أدخل كلمة المرور'
-                    ),
-                  ),*/
                     controller:passwordE,
                     obscureText: _isObscure,
     decoration: InputDecoration(

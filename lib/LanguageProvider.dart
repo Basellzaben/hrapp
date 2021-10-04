@@ -20,6 +20,8 @@ class LanguageProvider with ChangeNotifier{
     ,"logerror":" رقم المستخدم او رمز المرور خطأ"
     ,"distancesafe":"المسافة المسموح بها"
     ,"distancedang":"  المسافة الى الشركة   "
+    ,"leaverequest":"طلب مغادرة"
+    ,"vacationrequest":"طلب مغادرة"
   };
   static Map<String , Object?>  en={
     "savelogindetails":" Remember login information"
@@ -35,6 +37,8 @@ class LanguageProvider with ChangeNotifier{
     ,"logerror":"Wrong user number or passcode"
     ,"distancesafe":"Allowed distance"
     ,"distancedang":"The distance to the company"
+    ,"leaverequest":"leave request"
+    ,"vacationrequest":"vacation request"
   };
 
 
