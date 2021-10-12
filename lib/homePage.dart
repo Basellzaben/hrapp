@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hrmsapp/GlobalVar/Globalvireables.dart';
+import 'package:hrmsapp/leave_request/mainLeaveScreen.dart';
 import 'package:hrmsapp/sqlite/DatabaseHelper.dart';
+import 'package:hrmsapp/vacation_request/mainVacationScreen.dart';
 import 'FingerPrint/body.dart';
 import 'FingerPrint/fingerprintPage.dart';
 import 'LanguageProvider.dart';
@@ -100,6 +102,19 @@ String ss="ar";
                   );
                 },
               ),
+              ListTile(
+                leading:Icon(
+                    Icons.work, textDirection: LanguageProvider.getDirection()),
+                title: Text(LanguageProvider.getTexts('vacationrequest').toString()
+                    , textDirection: LanguageProvider.getDirection()),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => mainVacationScreen()),
+                  );
+                },
+              ),
 
 
               ListTile(
@@ -113,13 +128,13 @@ String ss="ar";
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MyHomePage(title: '',)),
+                        builder: (context) => mainLeaveScreen()),
                   );
                 },
               ),
 
-              ListTile(
-                leading: Icon(Icons.logout,
+            /*  ListTile(
+                leading: Icon(Icons.height,
                     textDirection: LanguageProvider.getDirection()),
                 title: Text(LanguageProvider.getTexts('vacationrequest').toString()
                     , textDirection: LanguageProvider.getDirection()),
@@ -129,10 +144,11 @@ String ss="ar";
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MyHomePage(title: '',)),
+                      //                        builder: (context) => mainVacationScreen()),
+                   builder: (context) => mainVacationScreen()),
                   );
                 },
-              ),
+              ),*/
 
 
               ListTile(
@@ -341,7 +357,7 @@ if(prefer.getString('f') !=null) {
                   Navigator.pop(context);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => WorkStatePage()),
+                    MaterialPageRoute(builder: (context) => mainVacationScreen()),
                   );
                 },
               ),
@@ -357,7 +373,7 @@ if(prefer.getString('f') !=null) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => MyHomePage(title: '',)),
+                        builder: (context) => mainLeaveScreen()),
                   );
                 },
               ),

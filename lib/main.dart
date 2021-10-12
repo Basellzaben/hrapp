@@ -104,6 +104,7 @@ String logo="";
 
 
         body: Container(
+
             decoration: BoxDecoration(
               image: DecorationImage(image: AssetImage("assest/background2.png"), fit: BoxFit.cover),
             ),
@@ -119,7 +120,6 @@ String logo="";
                 side: BorderSide(
                   width:MediaQuery.of(context).size.height,
                 //  color: Colors.black12.withOpacity(0.1),
-
 
                 ),
               ),
@@ -395,13 +395,13 @@ print("ff");
 
 
    _scaffoldKey.currentState!.showSnackBar(
-       new SnackBar(duration: new Duration(seconds: 1), content:
+       new SnackBar(duration: new Duration(seconds: 5), content:
        new
          Row(
          children: <Widget>[
-           new CircularProgressIndicator(),
-//                              new Text("جار تسجيل الدخول")
-           new Text(LanguageProvider.getTexts("log").toString())
+         new CircularProgressIndicator(),
+
+            new Text(LanguageProvider.getTexts("log").toString())
          ],
        ),
        ));
@@ -421,8 +421,9 @@ print("ff");
       c=1;
       print(jsonResponse+"   ggg");
       Navigator.push(
-        context,
-    MaterialPageRoute(builder: (context) => homePage()),);
+        context, MaterialPageRoute(builder: (context) => homePage()),);
+
+
     }
     else {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
@@ -433,7 +434,7 @@ print("ff");
 */
 
 
-      _scaffoldKey.currentState!.showSnackBar(
+     /* _scaffoldKey.currentState!.showSnackBar(
           new SnackBar(duration: new Duration(seconds: 1), content:
           new Row(
             children: <Widget>[
@@ -443,11 +444,11 @@ print("ff");
             ],
           ),
           ));
+*/
 
-
-    /*  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("رقم المستخدم او رمز المرور خطأ"),
-      ));*/
+      ));
     }
  /*.closed
         .then((SnackBarClosedReason reason) {

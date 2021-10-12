@@ -22,6 +22,27 @@ class LanguageProvider with ChangeNotifier{
     ,"distancedang":"  المسافة الى الشركة   "
     ,"leaverequest":"طلب مغادرة"
     ,"vacationrequest":"طلب اجازة"
+    ,"Name":"الاسـم : "
+    ,"Departuretype":"نوع المغادرة"
+    ,"Departurestarttime":"وقت بداية المغادرة"
+    ,"Departureendtime":"وقت نهاية المغادرة"
+    ,"Send":"أرسال"
+    ,"notes":"الملاحظات"
+    ,"Departuretime":"مدة المغادرة"
+
+    ,"vactioncount":"عدد ايام الاجازة"
+
+    ,"vactiontype":"نوع الاجازة"
+    ,"datestartvaction":"تاريخ بداية الاجازة"
+    ,"dateendvaction":"تاريخ نهاية الاجازة"
+
+
+
+    ,"emmployees":"الموظف البديل"
+
+    ,"phoneanddetails":"العنوان ورقم الهاتف اثناء الاجازة"
+    ,"selectimage":"اختيار صورة"
+
   };
   static Map<String , Object?>  en={
     "savelogindetails":" Remember login information"
@@ -39,6 +60,27 @@ class LanguageProvider with ChangeNotifier{
     ,"distancedang":"The distance to the company"
     ,"leaverequest":"leave request"
     ,"vacationrequest":"vacation request"
+    ,"Name":"Name : "
+    ,"Departuretype":"Departure type"
+    ,"Departurestarttime":"Departure start time"
+    ,"Departureendtime":"Departure end time"
+    ,"notes":"Notes & Comment"
+    ,"Departuretime":"Departure time"
+    ,"Send":"Send"
+    ,"Departuretime":"Departure time"
+
+
+    ,"vactiontype":"vacation Type"
+    ,"datestartvaction":"vacation start date"
+    ,"dateendvaction":"vacation end date"
+
+    ,"vactioncount":"number of vacation days"
+    ,"phoneanddetails":"Address and phone number while on vacation"
+
+    ,"emmployees":"substitute employee"
+    ,"selectimage":"Select Images"
+
+
   };
 
 
@@ -68,6 +110,15 @@ notifyListeners();
 
   }
 
+  static Alignment Align(){
+    // String languageCode = Platform.localeName.split('_')[0];
+    String languageCode = Globalvireable.languageCode;//Platform.localeName.split('_')[0];
+
+    if(languageCode == "ar")
+      return Alignment.topRight;
+    return Alignment.topLeft;
+
+  }
 
   static Object? getTexts(String txt){
    // String languageCode = Platform.localeName.split('_')[0];
@@ -77,6 +128,10 @@ notifyListeners();
     return ar[txt];
     return en[txt];
   }
+
+
+
+
 
   static getStringValuesSF(String key) async {
   //  SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -88,6 +143,5 @@ notifyListeners();
       return "en";
     return stringValue;
   }
-
 
 }
