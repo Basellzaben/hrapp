@@ -7,7 +7,7 @@ import 'dart:async';
 import '../LanguageProvider.dart';
 import '../homePage.dart';
 import 'dart:io' as io;
-class body_vacation extends StatefulWidget {
+class CertificationRequest extends StatefulWidget {
   goBackToPreviousScreen(BuildContext context){
     // Navigator.pop(context);
     Navigator.push(
@@ -15,7 +15,7 @@ class body_vacation extends StatefulWidget {
       MaterialPageRoute(builder: (context) => homePage()),);
   }
   @override
-  _body_vacation createState() => _body_vacation();
+  _CertificationRequest createState() => _CertificationRequest();
 }
 goBackToPreviousScreen(BuildContext context) {
   Navigator.pop(context);
@@ -48,7 +48,7 @@ goBackToPreviousScreen(BuildContext context) {
     },
   );
 }*/
-class _body_vacation extends State<body_vacation> {
+class _CertificationRequest extends State<CertificationRequest> {
   TextEditingController timeinput = TextEditingController();
   TextEditingController timeout = TextEditingController();
   TextEditingController longtimecontroler = TextEditingController();
@@ -68,7 +68,7 @@ class _body_vacation extends State<body_vacation> {
 
     return Scaffold(
         appBar: AppBar(title: Text(
-          LanguageProvider.getTexts('vacationrequest').toString(),
+          LanguageProvider.getTexts('Requestcertificate').toString(),
           /*   textDirection: TextDirection.ltr*/),
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -216,7 +216,7 @@ class _body_vacation extends State<body_vacation> {
                                             child: TextField(
 
                                               decoration: InputDecoration(
-                                                prefixIcon: Icon(Icons.description),
+                                                prefixIcon: Icon(Icons.format_align_justify),
                                                 border: OutlineInputBorder(),
                                                 focusedBorder: OutlineInputBorder(
                                                     borderSide: BorderSide(
@@ -235,7 +235,7 @@ class _body_vacation extends State<body_vacation> {
                                                     top: 18, bottom: 18, right: 20, left: 20),
                                                 fillColor: Colors.white,
                                                 filled: true,
-                                                hintText: LanguageProvider.getTexts('vactiontype').toString(),
+                                                hintText: LanguageProvider.getTexts('certificationtype').toString(),
 
                                               ),
                                             )
@@ -247,8 +247,9 @@ class _body_vacation extends State<body_vacation> {
 
 
 
-                                    Align(
 
+
+                                    Align(
                                         child: Container(
                                             margin: const EdgeInsets.only(top: 25, left: 20, right: 20),
                                             //  alignment: Alignment.center,
@@ -274,7 +275,7 @@ class _body_vacation extends State<body_vacation> {
                                                     top: 18, bottom: 18, right: 20, left: 20),
                                                 fillColor: Colors.white,
                                                 filled: true,
-                                                hintText: LanguageProvider.getTexts('emmployees').toString(),
+                                                hintText: LanguageProvider.getTexts('Certificatestatement').toString(),
 
                                               ),
                                             )
@@ -285,129 +286,15 @@ class _body_vacation extends State<body_vacation> {
                                         )),
 
 
-
-
                                     Align(
-                                        child: Container(
 
-                                            margin: const EdgeInsets.only(top: 25, left: 20, right: 20),
-                                            child: TextFormField(
-                                              readOnly: true,
-                                              controller: timeinput,
-                                              decoration: InputDecoration(
-                                                prefixIcon: Icon(Icons.timer),
-                                                border: OutlineInputBorder(),
-                                                focusedBorder: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: hexToColor("#415440"), width: 0.0),
-                                                    borderRadius: BorderRadius.circular(10.0)
-                                                ),
-                                                enabledBorder: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.black, width: 0.0),
-                                                    borderRadius: BorderRadius.circular(10.0)
-
-                                                ),
-
-
-                                                contentPadding: EdgeInsets.only(
-                                                    top: 18, bottom: 18, right: 20, left: 20),
-                                                fillColor: Colors.white,
-                                                filled: true,
-                                                hintText: LanguageProvider.getTexts('datestartvaction').toString(),
-
-                                              ),
-                                              onTap: () async {
-                                                await showDatePicker(
-                                                  context: context,
-                                                  initialDate: DateTime.now(),
-                                                  firstDate: DateTime(2015),
-                                                  lastDate: DateTime(2025),
-                                                ).then((selectedDate) {
-                                                  if (selectedDate != null) {
-
-                                                    timeinput.text =
-                                                        DateFormat('yyyy-MM-dd').format(selectedDate);
-                                                  }
-                                                });
-
-                                                calculatelongtimee();
-
-                                              },
-                                              validator: (value) {
-                                                if (value == null || value.isEmpty) {
-                                                  return 'Please enter date.';
-                                                }
-                                                return null;
-                                              },
-                                            ))),
-
-                                    Align(
-                                        child: Container(
-
-                                            margin: const EdgeInsets.only(top: 25, left: 20, right: 20),
-                                    child: TextFormField(
-                                      readOnly: true,
-                                      controller: timeout,
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(Icons.timer),
-                                        border: OutlineInputBorder(),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: hexToColor("#415440"), width: 0.0),
-                                            borderRadius: BorderRadius.circular(10.0)
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.black, width: 0.0),
-                                            borderRadius: BorderRadius.circular(10.0)
-
-                                        ),
-
-
-                                        contentPadding: EdgeInsets.only(
-                                            top: 18, bottom: 18, right: 20, left: 20),
-                                        fillColor: Colors.white,
-                                        filled: true,
-                                        hintText: LanguageProvider.getTexts('dateendvaction').toString(),
-
-                                      ),
-                                      onTap: () async {
-                                        await showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime(2015),
-                                          lastDate: DateTime(2025),
-                                        ).then((selectedDate) {
-                                          if (selectedDate != null) {
-
-                                            timeout.text =
-                                            DateFormat('yyyy-MM-dd').format(selectedDate);
-                                          }
-                                        });
-
-                                        calculatelongtimee();
-                                      },
-                                      validator: (value) {
-                                        if (value == null || value.isEmpty) {
-                                          return 'Please enter date.';
-                                        }
-                                        return null;
-                                      },
-                                    ))),
-
-                                    Align(
                                         child: Container(
                                             margin: const EdgeInsets.only(top: 25, left: 20, right: 20),
                                             //  alignment: Alignment.center,
                                             child: TextField(
 
-
-
-                                              controller: longtimecontroler,
-                                              enabled: false,
                                               decoration: InputDecoration(
-                                                prefixIcon: Icon(Icons.looks_one_sharp),
+                                                prefixIcon: Icon(Icons.send),
                                                 border: OutlineInputBorder(),
                                                 focusedBorder: OutlineInputBorder(
                                                     borderSide: BorderSide(
@@ -426,11 +313,17 @@ class _body_vacation extends State<body_vacation> {
                                                     top: 18, bottom: 18, right: 20, left: 20),
                                                 fillColor: Colors.white,
                                                 filled: true,
-                                                hintText: LanguageProvider.getTexts('vactioncount').toString(),
+                                                hintText: LanguageProvider.getTexts('to').toString(),
 
                                               ),
                                             )
+
+
+
+
                                         )),
+
+
                                     Align(
 
                                         child: Container(
@@ -462,7 +355,7 @@ class _body_vacation extends State<body_vacation> {
                                                 fillColor: Colors.white,
                                                 filled: true,
 
-                                                hintText: LanguageProvider.getTexts('phoneanddetails').toString(),
+                                                hintText: LanguageProvider.getTexts('thereasons').toString(),
                                               ),
 
                                             )
@@ -472,50 +365,13 @@ class _body_vacation extends State<body_vacation> {
 
                                         )),
 
-                                    Align(
-                                        child: Container(
-                                            margin: const EdgeInsets.only(top: 25, left: 20, right: 20),
-                                            //  alignment: Alignment.center,
 
-                                            child: TextField(
-
-                                              keyboardType: TextInputType.multiline,
-                                              decoration: InputDecoration(
-                                                prefixIcon: Icon(Icons.message_outlined),
-                                                border: OutlineInputBorder(),
-                                                focusedBorder: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: hexToColor("#415440"), width: 0.0),
-                                                    borderRadius: BorderRadius.circular(10.0)
-                                                ),
-                                                enabledBorder: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.black, width: 0.0),
-                                                    borderRadius: BorderRadius.circular(10.0)
-
-                                                ),
-
-
-                                                contentPadding: EdgeInsets.only(
-                                                    top: 70, bottom: 18, right: 20, left: 20),
-                                                fillColor: Colors.white,
-                                                filled: true,
-
-                                                hintText: LanguageProvider.getTexts('notes').toString(),
-                                              ),
-
-                                            )
-
-
-
-
-                                        )),
 
                                     Align(
                                       child: Container(
 
                                         margin: const EdgeInsets.only(top: 25, left: 20, right: 20),
-                                         alignment: Alignment.center,
+                                        alignment: Alignment.center,
 
                                         child: Column(
 
@@ -523,11 +379,11 @@ class _body_vacation extends State<body_vacation> {
                                           children: <Widget>[
                                             ElevatedButton(
 
-                                              child: Text(LanguageProvider.getTexts('selectimage').toString()),
+                                              child: Text(LanguageProvider.getTexts('documents').toString()),
                                               onPressed:
                                                   () async {
                                                 var imgFile = await ImagePicker.pickImage(
-                                                source: ImageSource.gallery
+                                                    source: ImageSource.gallery
 
                                                 );
                                                 setState((){
@@ -578,7 +434,7 @@ class _body_vacation extends State<body_vacation> {
 
 
                                           onPressed: () {  },
-                                          child: Text(LanguageProvider.getTexts('Send').toString()),
+                                          child: Text(LanguageProvider.getTexts('Order').toString()),
                                         )
                                     ),
 
@@ -616,13 +472,13 @@ class _body_vacation extends State<body_vacation> {
     DateTime from = DateTime.parse(timeinput.text);
     DateTime to = DateTime.parse(timeout.text);
     var differenceInDays = to.difference(from).inDays.toString();
-if(differenceInDays.contains('-'))
-  differenceInDays='0';
-else if(timeinput.text==timeout.text)
-  differenceInDays='1';
+    if(differenceInDays.contains('-'))
+      differenceInDays='0';
+    else if(timeinput.text==timeout.text)
+      differenceInDays='1';
 
     longtimecontroler.text = differenceInDays ;
   }
 
 
-  }
+}

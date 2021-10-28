@@ -16,7 +16,7 @@ class Globalvireable{
 
   static bool type=true;
   static int type2=1;
-  static Position? currentPosition=null;
+  static Position? currentPosition;
   static String email="";
   static double lat1=0;
   static double lng=0;

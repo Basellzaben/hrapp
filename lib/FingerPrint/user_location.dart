@@ -1,9 +1,9 @@
 class UserLocation {
 
-  final double? latitude;
-  final double? longitude;
+  final double latitude;
+  final double longitude;
 
-  UserLocation({  this.latitude,   this.longitude });
+  UserLocation({  required this.latitude,   required this.longitude });
 
 
 

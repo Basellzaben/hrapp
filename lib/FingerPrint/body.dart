@@ -112,13 +112,13 @@ class _ExampleState extends State<Body> {
          child: FutureBuilder<Location>  (
           future: getLocation1(),
           builder: (context, snapshot) {
-            var data = snapshot.data;
-            if ( snapshot.hasData || _currentPosition==null || snapshot.error!=null
-            || snapshot.connectionState != ConnectionState.waiting
-            ){
-              distance = double.parse(data!.Distination);
-              return SizedBox(
 
+            if ( snapshot.hasData  /*|| _currentPosition==null || snapshot.error!=null
+            || snapshot.connectionState != ConnectionState.waiting*/){
+              var data = snapshot.data;
+
+              distance = double.parse(data!.Distination ) ;
+              return SizedBox(
                 width: double.infinity,
                 height: MediaQuery
                     .of(context)
@@ -130,9 +130,8 @@ class _ExampleState extends State<Body> {
                         margin: const EdgeInsets.only(top: 20.0,right: 0.0,left: 0.0),
 
 
-                    child: Consumer<MyThemeModel>
-                      (
-                      builder: (context, theme, child) =>
+                        child: Consumer<MyThemeModel>
+                      (builder: (context, theme, child) =>
                           GestureDetector
                             (
                             onTap: () =>
@@ -268,7 +267,7 @@ class _ExampleState extends State<Body> {
               );
             } else {
               return Center(child: CircularProgressIndicator());
-            };
+            }
           }
       ),
     ),);

@@ -29,19 +29,29 @@ class LanguageProvider with ChangeNotifier{
     ,"Send":"أرسال"
     ,"notes":"الملاحظات"
     ,"Departuretime":"مدة المغادرة"
-
     ,"vactioncount":"عدد ايام الاجازة"
-
     ,"vactiontype":"نوع الاجازة"
     ,"datestartvaction":"تاريخ بداية الاجازة"
     ,"dateendvaction":"تاريخ نهاية الاجازة"
-
-
-
     ,"emmployees":"الموظف البديل"
-
     ,"phoneanddetails":"العنوان ورقم الهاتف اثناء الاجازة"
     ,"selectimage":"اختيار صورة"
+    ,"Administration":"الادارة"
+    ,"Directresponsible":"المسؤول المباشر"
+    ,"Qualification":"المؤهل العلمي"
+    ,"employeestatus":"حالة الموظف"
+    ,"YearsofExperience":"عدد سنوات الخبرة"
+    ,"department":"القسم"
+    ,"Requestcertificate":"طلب شهادة"
+    ,"otherrequests":"طلبات اخرى"
+    ,"to":"موجهة الى"
+    ,"certificationtype":"نوع الشهادة"
+    ,"thereasons":"الاسباب"
+    ,"Certificatestatement":"بيان الشهادة"
+    ,"documents":"الوثائق"
+    ,"Order":"طلب"
+    ,"requesttype":"نوع الطلب"
+    ,"request":"الطلب"
 
   };
   static Map<String , Object?>  en={
@@ -68,18 +78,29 @@ class LanguageProvider with ChangeNotifier{
     ,"Departuretime":"Departure time"
     ,"Send":"Send"
     ,"Departuretime":"Departure time"
-
-
     ,"vactiontype":"vacation Type"
     ,"datestartvaction":"vacation start date"
     ,"dateendvaction":"vacation end date"
-
     ,"vactioncount":"number of vacation days"
     ,"phoneanddetails":"Address and phone number while on vacation"
-
     ,"emmployees":"substitute employee"
     ,"selectimage":"Select Images"
-
+    ,"Administration":"Administration"
+,"Directresponsible":"Direct responsible"
+    ,"Qualification":"Qualification"
+    ,"employeestatus":"employee status"
+    ,"YearsofExperience":"Years of Experience"
+    ,"department":"department"
+    ,"Requestcertificate":"Request a certificate"
+    ,"otherrequests":"other requests"
+    ,"to":"to"
+    ,"certificationtype":"certificationtype"
+    ,"thereasons":"the reasons"
+    ,"Certificatestatement":"Certificate statement"
+    ,"Order":"Order"
+    ,"requesttype":"request type"
+    ,"request":"request"
+    ,"documents":"documents"
 
   };
 

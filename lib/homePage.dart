@@ -7,10 +7,12 @@ import 'package:hrmsapp/GlobalVar/Globalvireables.dart';
 import 'package:hrmsapp/leave_request/mainLeaveScreen.dart';
 import 'package:hrmsapp/sqlite/DatabaseHelper.dart';
 import 'package:hrmsapp/vacation_request/mainVacationScreen.dart';
+import 'ElseRequests/MainElseRequest.dart';
 import 'FingerPrint/body.dart';
 import 'FingerPrint/fingerprintPage.dart';
 import 'LanguageProvider.dart';
 import 'ProfilePage.dart';
+import 'Requestcertificate/MainCertificationRequest.dart';
 import 'WorkStatePage.dart';
 import 'main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -43,12 +45,10 @@ String ss="ar";
           child: ProfilePage(),
         ),
         drawer: Drawer(
-
           child: ListView(
             // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: <Widget>[
-
               UserAccountsDrawerHeader(
                 accountName: Text(Globalvireable.name),
                 accountEmail: Text(Globalvireable.email),
@@ -59,7 +59,7 @@ String ss="ar";
                     "G",
                     textDirection: LanguageProvider.getDirection(),
                     style: TextStyle(fontSize: 40.0),
-                  ),
+                             ),
 
                 ),
               ),
@@ -89,6 +89,7 @@ String ss="ar";
                   );*/
                 },
               ),
+
               ListTile(
                 leading:Icon(
                     Icons.work, textDirection: LanguageProvider.getDirection()),
@@ -128,7 +129,7 @@ String ss="ar";
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => mainLeaveScreen()),
+                    builder: (context) => mainLeaveScreen()),
                   );
                 },
               ),
@@ -151,6 +152,41 @@ String ss="ar";
               ),*/
 
 
+
+              ListTile(
+                leading: Icon(Icons.verified,
+                    textDirection: LanguageProvider.getDirection()),
+                title: Text(LanguageProvider.getTexts('Requestcertificate').toString()
+                    , textDirection: LanguageProvider.getDirection()),
+
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MainCertificationRequest()),
+                  );
+                },
+              ),
+
+
+              ListTile(
+                leading: Icon(Icons.account_balance_wallet_sharp,
+                    textDirection: LanguageProvider.getDirection()),
+                title: Text(LanguageProvider.getTexts('otherrequests').toString()
+                    , textDirection: LanguageProvider.getDirection()),
+
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MainElseRequest()),
+                  );
+                },
+              ),
+
+
               ListTile(
                 leading: Icon(Icons.logout,
                     textDirection: LanguageProvider.getDirection()),
@@ -171,7 +207,7 @@ String ss="ar";
                 subtitle: Column(
                   children: <Widget>[
                     FlatButton( color: Colors.deepPurple,
-                        shape: CircleBorder(),child: Text(Globalvireable.languageCode,
+                    shape: CircleBorder(),child: Text(Globalvireable.languageCode,
 
 
                         ),
@@ -379,7 +415,47 @@ if(prefer.getString('f') !=null) {
               ),
 
 
+
               ListTile(
+                leading: Icon(Icons.verified,
+                    textDirection: LanguageProvider.getDirection()),
+                title: Text(LanguageProvider.getTexts('Requestcertificate').toString()
+                    , textDirection: LanguageProvider.getDirection()),
+
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+
+                        builder: (context) => MainCertificationRequest()),
+
+                  );
+                },
+              ),
+
+
+
+              ListTile(
+              leading: Icon(Icons.account_balance_wallet_sharp,
+                  textDirection: LanguageProvider.getDirection()),
+              title: Text(LanguageProvider.getTexts('otherrequests').toString()
+                  , textDirection: LanguageProvider.getDirection()),
+
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MainElseRequest()),
+
+              );
+            },
+          ),
+
+
+
+                ListTile(
                 leading: Icon(Icons.logout,
                     textDirection: LanguageProvider.getDirection()),
                 title: Text(LanguageProvider.getTexts('Logout').toString()

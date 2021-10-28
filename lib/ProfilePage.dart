@@ -14,6 +14,7 @@ import 'package:path_provider/path_provider.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:splashscreen/splashscreen.dart';
 import 'package:translator/translator.dart';
+import 'LanguageProvider.dart';
 import 'homePage.dart';
 import 'models/Personalinfo.dart';
 import 'sqlite/DatabaseHelper.dart';
@@ -103,7 +104,6 @@ Future<String> t()async{
 
     try{
     return Scaffold(
-
         body: SingleChildScrollView(
         child: FutureBuilder<Personalinfo>(
         future: getUser(),
@@ -113,18 +113,15 @@ Future<String> t()async{
     Globalvireable.name=data!.EmployeeDisplayName;
     Globalvireable.email=data.Email;
     return Container(
-
         child: SingleChildScrollView(
         child: Column(children: [
           Container(
-
             width: MediaQuery.of(context).size.height,
-height: 120,
+            height: 120,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.vertical(
+            borderRadius: BorderRadius.vertical(
                   bottom: Radius.elliptical(
                       MediaQuery.of(context).size.width, 65.0)),
-
               image: DecorationImage(
                 image: AssetImage('assest/cover.png'),
                 fit: BoxFit.fitWidth,
@@ -149,9 +146,7 @@ height: 120,
 
           Container(
             margin: const EdgeInsets.only(top: 15.0),
-
             alignment: Alignment.center,
-
               child: Text(
                 data.EmployeeDisplayName,
                 style: TextStyle(
@@ -184,7 +179,7 @@ height: 120,
               child: Align(
                 alignment: Alignment.topRight,
               child: Text(
-             "القسم" ,
+                LanguageProvider.getTexts('department').toString(),
                 style: TextStyle(
                     fontSize: 20,
                     color: Colors.black45,
@@ -203,7 +198,8 @@ height: 120,
               style: TextStyle(
                   fontSize: 15,
                   color: Colors.black,
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.bold
+              ),
             ),)
 
             ,),
@@ -214,7 +210,7 @@ height: 120,
               child: Align(
                 alignment: Alignment.topRight,
                 child: Text(
-                  "الادارة",
+                  LanguageProvider.getTexts('Administration').toString(),
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.black45,
@@ -247,7 +243,8 @@ height: 120,
               child: Align(
                 alignment: Alignment.topRight,
                 child: Text(
-                  "المسؤول المباشر",
+                  LanguageProvider.getTexts('Directresponsible').toString(),
+
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.black45,
@@ -281,7 +278,7 @@ height: 120,
               child: Align(
                 alignment: Alignment.topRight,
                 child: Text(
-                  " المؤهل العلمي  ",
+                  LanguageProvider.getTexts('Qualification').toString(),
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.black45,
@@ -314,7 +311,7 @@ height: 120,
               child: Align(
                 alignment: Alignment.topRight,
                 child: Text(
-                  "حالة الموظف",
+                  LanguageProvider.getTexts('employeestatus').toString(),
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.black45,
@@ -347,7 +344,7 @@ height: 120,
               child: Align(
                 alignment: Alignment.topRight,
                 child: Text(
-                  "عدد سنوات الخبرة",
+                  LanguageProvider.getTexts('YearsofExperience').toString(),
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.black45,
@@ -451,9 +448,7 @@ controller: namecontroler,
 
     ));
   }on Exception catch (_) {
-
       return Center(child: CircularProgressIndicator());
-
     }
 
   }

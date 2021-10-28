@@ -124,7 +124,6 @@ String logo="";
                 ),
               ),
                 margin: const EdgeInsets.only(left: 15.0,right: 15.0,top: 120.0,bottom: 0.0),
-
                     child: Column(children: [
 
                       Container(
@@ -134,11 +133,8 @@ String logo="";
                           width: MediaQuery.of(context).size.height,
                               child: Image.file(File(Globalvireable.logo), width: 400.0, height: 100.0)
                       ),
-
-
-
                Container(
-                        margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 30.0,bottom: 0.0),
+                 margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 30.0,bottom: 0.0),
                  color: Colors.transparent,
                        // color: Colors.white,
                         width: MediaQuery.of(context).size.height,
@@ -170,7 +166,7 @@ textAlign: LanguageProvider.TxtAlign(),
 
                       ),
 
-                    Container(
+              Container(
                       color: Colors.transparent,
                 margin: const EdgeInsets.only(left: 20.0,right: 20.0,top: 40.0,bottom: 12.0),
 
@@ -179,12 +175,9 @@ textAlign: LanguageProvider.TxtAlign(),
                // height: MediaQuery.of(context).size.height,
                   child: TextFormField(
                     textAlign: LanguageProvider.TxtAlign(),
-
-
                     controller:passwordE,
                     obscureText: _isObscure,
     decoration: InputDecoration(
-
     enabledBorder: OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(12.0)),
     borderSide: BorderSide(color: Colors.deepPurple, width: 2),
@@ -201,18 +194,15 @@ textAlign: LanguageProvider.TxtAlign(),
 
 
     labelStyle: TextStyle(
+
     color:Colors.black87,
     )
     ),
     ),
     ),
 
-
-
-
       Container(
         margin: const EdgeInsets.only(left: 12.0,right: 12.0,top: 5.0,bottom: 50.0),
-
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -280,8 +270,8 @@ textAlign: LanguageProvider.TxtAlign(),
 
                     onPressed: () async {
     try{
+
                         signIn_post(usenameE.text, passwordE.text);
-                        ;
                            /* .whenComplete(() =>
                             Navigator.of(context).pushNamed("/Home")
                         );
@@ -302,10 +292,10 @@ textAlign: LanguageProvider.TxtAlign(),
 
 
                       }on Exception catch (_) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                       /* ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text("يوجد مشكلة , يرجى المحاولة لاحقا"),
                         ));
-
+*/
                       }
 
                     },
@@ -350,9 +340,7 @@ print("ff");
         ), );
 
   }on Exception catch (_) {
-
-  return Center(child: CircularProgressIndicator());
-
+  return Container();//(child: CircularProgressIndicator());
   }
 
   }
@@ -392,10 +380,8 @@ print("ff");
   }*/
 
  signIn_post(String id ,String password) async {
-
-
    _scaffoldKey.currentState!.showSnackBar(
-       new SnackBar(duration: new Duration(seconds: 5), content:
+       new SnackBar(duration: new Duration(seconds: 20), content:
        new
          Row(
          children: <Widget>[
@@ -412,81 +398,39 @@ print("ff");
     final json = {
       "User_ID": id,
       "User_Password": password
-    };
+                 };
     http.Response response = await http.post(apiUrl, body: json);
+
 
 
     var jsonResponse = jsonDecode(response.body);
     if (jsonResponse == "1") {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
       c=1;
-      print(jsonResponse+"   ggg");
-      Navigator.push(
-        context, MaterialPageRoute(builder: (context) => homePage()),);
+    //  print(jsonResponse+"   ggg");
+
+      Navigator.of(context).pop();
+      Navigator.push(context, MaterialPageRoute(builder: (context) => homePage()),);
 
 
     }
     else {
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      try{
+   ScaffoldMessenger.of(context).hideCurrentSnackBar();
+   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+   content: Text("يوجد مشكلة , يرجى المحاولة لاحقا"),
+   ));
+   }catch(_){
+   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+   content: Text("يوجد مشكلة , يرجى المحاولة لاحقا"),
+   ));
+   }
 
-     /* ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("رقم المستخدم او رمز المرور خطأ"),
-      ));
-*/
-
-
-     /* _scaffoldKey.currentState!.showSnackBar(
-          new SnackBar(duration: new Duration(seconds: 1), content:
-          new Row(
-            children: <Widget>[
-           //   new CircularProgressIndicator(),
-//                              new Text("جار تسجيل الدخول")
-              new Text(LanguageProvider.getTexts("logerror").toString())
-            ],
-          ),
-          ));
-*/
-
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("رقم المستخدم او رمز المرور خطأ"),
-      ));
     }
- /*.closed
-        .then((SnackBarClosedReason reason) {
-     if(c==0)
 
-     ScaffoldMessenger.of(context).removeCurrentSnackBar();
-
-     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-       content: Text("رقم المستخدم او رمز المرور خطأ"),
-     ));
-
-        });
-*/
 if(c==0) {
 
-  /*ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
- ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text("رقم المستخدم او رمز المرور خطأ"),
-  ));
-
-  Fluttertoast.showToast(
-      msg: "This is Toast messaget",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1
-  );
-
-  Fluttertoast.showToast(
-      msg: "رقم المستخدم او رمز المرور خطأ",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0
-  );
-*/
 }
  }
 
